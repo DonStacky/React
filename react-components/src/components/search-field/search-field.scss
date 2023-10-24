@@ -18,29 +18,29 @@
 
   &:active {
     transform: scale(0.95);
-   }
+  }
 
-   &:hover {
+  &:hover {
     background-color: darken($secondaryColor, 7%);
-   }
+  }
 }
 
 .search-field__input {
- width: 20rem;
- height: 3rem;
- border-radius: 2rem;
- border: none;
- outline: none;
- padding: 0 8rem 0 2rem;
- transition: 0.3s;
- overflow: hidden;
+  width: 20rem;
+  height: 3rem;
+  border-radius: 2rem;
+  border: none;
+  outline: none;
+  padding: 0 8rem 0 2rem;
+  transition: 0.3s;
+  overflow: hidden;
 
- &:focus {
-  border: 1px solid $secondaryColor;
-  box-shadow: inset 0px 0px 5px #555555;
- }
+  &:focus {
+    border: 1px solid $secondaryColor;
+    box-shadow: inset 0px 0px 5px #555555;
+  }
 
- &:hover {
-  box-shadow: inset 0px 0px 5px #555555;
- }
+  &:hover {
+    box-shadow: inset 0px 0px 5px #555555;
+  }
 }
