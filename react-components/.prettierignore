@@ -1,0 +1,4 @@
+# Ignore artifacts:
+.prettierignore
+public
+src/assets/image

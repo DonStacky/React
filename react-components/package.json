@@ -14,6 +14,7 @@
     "*": "prettier --write ."
   },
   "dependencies": {
+    "@rollup/plugin-alias": "^5.0.1",
     "prettier": "^3.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
@@ -37,5 +38,9 @@
     "sass": "^1.69.4",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
+  },
+  "imports": {
+    "#*": "./src/*",
+    "#fonts": "./public/fonts"
   }
 }
