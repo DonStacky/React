@@ -1,6 +1,6 @@
 import { Component } from 'react';
-import { ErrorBoundary } from '../../model/ErrorBoundary';
-import { ErrorButton } from './ErrorButton/ErrorButton';
+import { ErrorBoundary } from '../../model/error-boundary';
+import { ErrorButton } from './error-button/error-button';
 import './card.scss';
 
 type Props = {
