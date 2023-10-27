@@ -4,7 +4,7 @@ export default {
   input: 'src/main.tsx',
   output: {
     dir: 'output',
-    format: 'cjs',
+    format: 'es',
   },
   plugins: [
     alias({
