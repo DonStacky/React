@@ -1,5 +1,5 @@
 import { Component, ReactNode } from 'react';
-import './ErrorButton.scss';
+import './error-button.scss';
 
 type Props = {
   children?: ReactNode;
