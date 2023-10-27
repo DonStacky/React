@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { Card } from '../card/card';
 import { Loader } from '../loader/loader';
 import './result-field.scss';
-import { PokemonData } from '../../shared/types';
+import { PokemonData } from '../../../shared/types';
 import { NotFound } from '../not-found/not-found';
 
 type Props = {

@@ -2,31 +2,33 @@
   border-radius: 8px;
   background-color: $primaryColor;
   box-shadow: $shadow;
+  max-width: 16rem;
+  margin: 0 auto;
 
   &__imgbox {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 22rem;
+    height: 12rem;
     background-color: lighten($secondaryColor, 30%);
   }
 
   &__img {
     border-radius: 8px 8px 0 0;
-    width: 80%;
+    width: 10rem;
   }
 
   &__title {
     font-weight: 700;
     padding: 0 1rem;
-    margin: 1rem 0 0.5rem;
+    margin: 0.5rem 0;
   }
 
   &__text {
-    padding: 0 1rem 1em;
+    padding: 0 1rem;
     margin: 0;
-    height: 12rem;
+    height: 7rem;
     overflow-y: auto;
   }
 }
