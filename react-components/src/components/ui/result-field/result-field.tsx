@@ -5,8 +5,6 @@ import './result-field.scss';
 import { PokemonData } from '../../../shared/types';
 import { NotFound } from '../not-found/not-found';
 
-const POKEMONS_LIMIT = 8;
-
 type Props = {
   pokemons: PokemonData[] | boolean;
 };
@@ -20,7 +18,7 @@ export class ResultField extends Component<Props> {
     } else {
       return (
         <div className="container result-field">
-          {this.props.pokemons.slice(0, POKEMONS_LIMIT).map((item) => (
+          {this.props.pokemons.map((item) => (
             <Card
               key={item.id}
               name={item.name}
