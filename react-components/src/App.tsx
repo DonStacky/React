@@ -6,49 +6,47 @@ import { PokemonData } from './shared/types';
 import './app.scss';
 
 type State = {
-  pokemons: boolean | PokemonData[];
+  pokemons: PokemonData[];
+  isLoading: boolean;
 };
 
 class App extends Component<unknown, State> {
   state: State = {
-    pokemons: true,
+    pokemons: [],
+    isLoading: false,
   };
 
   componentDidMount = () => {
     const localTerm = localStorage.getItem('searchTermRSG');
 
     getPokemons(localTerm ?? '').then((result) => {
-      this.selectState(result);
+      this.setState({ pokemons: result, isLoading: true });
     });
   };
 
   searchPokemons = (searchTerm: string) => {
     this.setState({
-      pokemons: true,
+      ...this.state,
+      isLoading: false,
     });
 
     getPokemons(searchTerm).then((result) => {
       localStorage.setItem('searchTermRSG', searchTerm);
-      this.selectState(result);
+      this.setState({ pokemons: result, isLoading: true });
     });
   };
-
-  selectState(result: PokemonData[]) {
-    if (result.length === 0) {
-      this.setState({ pokemons: false });
-    } else {
-      this.setState({ pokemons: result });
-    }
-  }
 
   render() {
     return (
       <>
         <header className="header">
-          <SearchField search={this.searchPokemons}></SearchField>
+          <SearchField search={this.searchPokemons} />
         </header>
         <main>
-          <ResultField pokemons={this.state.pokemons}></ResultField>
+          <ResultField
+            pokemons={this.state.pokemons}
+            loader={this.state.isLoading}
+          />
         </main>
         <footer></footer>
       </>

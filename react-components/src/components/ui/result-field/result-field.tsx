@@ -6,16 +6,15 @@ import { PokemonData } from '../../../shared/types';
 import { NotFound } from '../not-found/not-found';
 
 type Props = {
-  pokemons: PokemonData[] | boolean;
+  pokemons: PokemonData[];
+  loader: boolean;
 };
 
 export class ResultField extends Component<Props> {
   render() {
-    if (this.props.pokemons === true) {
-      return <Loader></Loader>;
-    } else if (this.props.pokemons === false) {
-      return <NotFound />;
-    } else {
+    if (!this.props.loader) {
+      return <Loader />;
+    } else if (this.props.pokemons.length) {
       return (
         <div className="container result-field">
           {this.props.pokemons.map((item) => (
@@ -24,10 +23,12 @@ export class ResultField extends Component<Props> {
               name={item.name}
               description={item.description}
               image={item.image}
-            ></Card>
+            />
           ))}
         </div>
       );
+    } else {
+      return <NotFound />;
     }
   }
 }

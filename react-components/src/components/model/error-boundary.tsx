@@ -27,11 +27,7 @@ export class ErrorBoundary extends Component<Props, State> {
   render() {
     if (this.state.hasError) {
       return (
-        <Card
-          name="Caught error"
-          description={ERROR_MESSAGE}
-          image={Pepe}
-        ></Card>
+        <Card name="Caught error" description={ERROR_MESSAGE} image={Pepe} />
       );
     }
 
