@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { SearchField } from './components/ui/search-field/search-field';
 import { ResultField } from './components/ui/result-field/result-field';
-import { getPokemons } from './components/model/get-pokemons';
+import { getPokemons } from './components/model/api/get-pokemons';
 import { PokemonData } from './shared/types';
 import './app.scss';
 

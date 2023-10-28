@@ -7,33 +7,25 @@ type Props = {
 
 type State = {
   searchTerm: string;
-  inputValue: string;
 };
 
 export class SearchField extends Component<Props, State> {
   state: State = {
     searchTerm: '',
-    inputValue: 'Enter to search',
   };
 
   componentDidMount() {
     const localTerm = localStorage.getItem('searchTermRSG');
-    this.setState({
-      ...this.state,
-      inputValue: localTerm ?? 'Enter to search',
-    });
+    if (localTerm) this.setState({ searchTerm: localTerm });
   }
 
   handleButtonClick = (event: React.FormEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    if (!this.state.searchTerm) {
-      this.setState({ ...this.state, inputValue: 'Enter to search' });
-    }
     this.props.search(this.state.searchTerm);
   };
 
   handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ ...this.state, searchTerm: event.target.value });
+    this.setState({ searchTerm: event.target.value });
   };
 
   render() {
@@ -42,7 +34,8 @@ export class SearchField extends Component<Props, State> {
         <input
           type="text"
           className="search-field__input"
-          placeholder={this.state.inputValue || 'Enter to search'}
+          placeholder={'Enter to search'}
+          value={this.state.searchTerm}
           onChange={(event) => this.handleInputChange(event)}
         />
         <button
