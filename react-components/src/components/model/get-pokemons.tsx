@@ -1,5 +1,3 @@
-const POKEMONS_LIMIT = 8;
-
 export async function getPokemons(searchTerm?: string) {
   const response = await fetch(
     'https://pokeapi.co/api/v2/pokemon?limit=1000&offset=0'
@@ -15,11 +13,7 @@ export async function getPokemons(searchTerm?: string) {
 
   const pokemons = [];
 
-  for (
-    let pokemonNumber = 0;
-    pokemonNumber < POKEMONS_LIMIT && pokemonNumber < results.length;
-    pokemonNumber++
-  ) {
+  for (let pokemonNumber = 0; pokemonNumber < results.length; pokemonNumber++) {
     try {
       const name =
         results[pokemonNumber].name[0].toUpperCase() +
