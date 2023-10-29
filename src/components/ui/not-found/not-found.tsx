@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import image from '../../../assets/image/not-found.png';
+import image from 'image/not-found.png';
 import './not-found.scss';
 
 export class NotFound extends Component {

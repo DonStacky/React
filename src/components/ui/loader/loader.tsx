@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import loaderImg from '../../../assets/image/pokeball.png';
+import loaderImg from 'image/pokeball.png';
 import './loader.scss';
 
 export class Loader extends Component {
