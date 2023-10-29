@@ -55,5 +55,3 @@ class App extends Component<unknown, State> {
 }
 
 export default App;
-
-export const test = true;
