@@ -38,9 +38,5 @@
     "vite": "^4.4.5",
     "@rollup/plugin-alias": "^5.0.1",
     "prettier": "^3.0.3"
-  },
-  "imports": {
-    "#*": "./src/*",
-    "#fonts": "./public/fonts"
   }
 }

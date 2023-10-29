@@ -2,3 +2,5 @@
 .prettierignore
 public
 src/assets/image
+*\pre-commit
+.gitignore
