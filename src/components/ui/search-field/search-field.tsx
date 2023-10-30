@@ -36,11 +36,11 @@ export class SearchField extends Component<Props, State> {
           className="search-field__input"
           placeholder={'Enter to search'}
           value={this.state.searchTerm}
-          onChange={(event) => this.handleInputChange(event)}
+          onChange={this.handleInputChange}
         />
         <button
           className="search-field__button"
-          onClick={(event) => this.handleButtonClick(event)}
+          onClick={this.handleButtonClick}
         >
           Search
         </button>

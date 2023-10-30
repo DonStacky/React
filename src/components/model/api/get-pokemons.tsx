@@ -1,11 +1,18 @@
+import { PokemonData } from '../../../shared/types';
+
 const POKEMONS_LIMIT = 8;
+
+type ResultData = {
+  name: string;
+  url: string;
+};
 
 export async function getPokemons(searchTerm?: string) {
   const response = await fetch(
     'https://pokeapi.co/api/v2/pokemon?limit=1000&offset=0'
   );
   const json = await response.json();
-  let results = json.results;
+  let results: ResultData[] = json.results;
 
   if (searchTerm) {
     results = results.filter((pokemon: { name: string }) =>
@@ -13,7 +20,7 @@ export async function getPokemons(searchTerm?: string) {
     );
   }
 
-  const pokemons = [];
+  const pokemons: PokemonData[] = [];
 
   for (
     let pokemonNumber = 0;
