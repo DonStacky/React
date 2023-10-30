@@ -1,0 +1,7 @@
+# Ignore artifacts:
+.prettierignore
+public
+src/assets/image
+pre-commit
+.gitignore
+husky.sh
