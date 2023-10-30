@@ -1,57 +1,48 @@
-import { Component } from 'react';
+import { useEffect, useState } from 'react';
 import { SearchField } from './components/ui/search-field/search-field';
 import { ResultField } from './components/ui/result-field/result-field';
 import { getPokemons } from './components/model/api/get-pokemons';
 import { PokemonData } from './shared/types';
 import './app.scss';
 
-type State = {
-  pokemons: PokemonData[];
-  isLoading: boolean;
-};
+export const App = () => {
+  const [pokemons, setPokemons] = useState<PokemonData[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-class App extends Component<unknown, State> {
-  state: State = {
-    pokemons: [],
-    isLoading: false,
-  };
+  useEffect(() => {
+    let ignore = false;
 
-  componentDidMount = () => {
     const localTerm = localStorage.getItem('searchTermRSG');
-
     getPokemons(localTerm ?? '').then((result) => {
-      this.setState({ pokemons: result, isLoading: true });
-    });
-  };
-
-  searchPokemons = (searchTerm: string) => {
-    this.setState({
-      ...this.state,
-      isLoading: false,
+      if (!ignore) {
+        setIsLoading(true);
+        setPokemons(result);
+      }
     });
 
+    return () => {
+      ignore = true;
+    };
+  }, []);
+
+  const searchPokemons = (searchTerm: string) => {
+    setIsLoading(false);
     getPokemons(searchTerm).then((result) => {
       localStorage.setItem('searchTermRSG', searchTerm);
-      this.setState({ pokemons: result, isLoading: true });
+      setIsLoading(true);
+      setPokemons(result);
     });
   };
 
-  render() {
-    return (
-      <>
-        <header className="header">
-          <SearchField search={this.searchPokemons} />
-        </header>
-        <main>
-          <ResultField
-            pokemons={this.state.pokemons}
-            loader={this.state.isLoading}
-          />
-        </main>
-        <footer></footer>
-      </>
-    );
-  }
-}
-
-export default App;
+  return (
+    <>
+      <header className="header">
+        <SearchField search={searchPokemons} />
+      </header>
+      <main>
+        <ResultField pokemons={pokemons} loader={isLoading} />
+      </main>
+      <footer></footer>
+    </>
+  );
+};

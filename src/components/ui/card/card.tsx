@@ -1,31 +1,24 @@
-import { Component } from 'react';
 import { ErrorBoundary } from '../../model/error-boundary';
 import { ErrorButton } from './error-button/error-button';
 import './card.scss';
 
-type Props = {
+type CardProps = {
   name: string;
   description: string;
   image: string;
 };
 
-export class Card extends Component<Props> {
-  render() {
-    return (
-      <ErrorBoundary>
-        <div className="card">
-          <div className="card__imgbox">
-            <img
-              className="card__img"
-              src={this.props.image}
-              alt={this.props.name}
-            />
-          </div>
-          <h3 className="card__title">{this.props.name}</h3>
-          <p className="card__text">{this.props.description}</p>
-          <ErrorButton />
+export const Card = ({ name, description, image }: CardProps) => {
+  return (
+    <ErrorBoundary>
+      <div className="card">
+        <div className="card__imgbox">
+          <img className="card__img" src={image} alt={name} />
         </div>
-      </ErrorBoundary>
-    );
-  }
-}
+        <h3 className="card__title">{name}</h3>
+        <p className="card__text">{description}</p>
+        <ErrorButton />
+      </div>
+    </ErrorBoundary>
+  );
+};

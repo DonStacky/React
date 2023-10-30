@@ -1,50 +1,41 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import './search-field.scss';
 
 type Props = {
   search: (searchTerm: string) => void;
 };
 
-type State = {
-  searchTerm: string;
-};
+export const SearchField = ({ search }: Props) => {
+  let initTerm = '';
+  const localTerm = localStorage.getItem('searchTermRSG');
+  if (localTerm) initTerm = localTerm;
 
-export class SearchField extends Component<Props, State> {
-  state: State = {
-    searchTerm: '',
-  };
+  const [searchTerm, setSearchTerm] = useState(initTerm);
 
-  componentDidMount() {
-    const localTerm = localStorage.getItem('searchTermRSG');
-    if (localTerm) this.setState({ searchTerm: localTerm });
-  }
-
-  handleButtonClick = (event: React.FormEvent<HTMLButtonElement>) => {
+  const handleButtonClick = (event: React.FormEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    this.props.search(this.state.searchTerm);
+    search(searchTerm);
   };
 
-  handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ searchTerm: event.target.value });
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
   };
 
-  render() {
-    return (
-      <form className="search-field__form container">
-        <input
-          type="text"
-          className="search-field__input"
-          placeholder={'Enter to search'}
-          value={this.state.searchTerm}
-          onChange={(event) => this.handleInputChange(event)}
-        />
-        <button
-          className="search-field__button"
-          onClick={(event) => this.handleButtonClick(event)}
-        >
-          Search
-        </button>
-      </form>
-    );
-  }
-}
+  return (
+    <form className="search-field__form container">
+      <input
+        type="text"
+        className="search-field__input"
+        placeholder={'Enter to search'}
+        value={searchTerm}
+        onChange={(event) => handleInputChange(event)}
+      />
+      <button
+        className="search-field__button"
+        onClick={(event) => handleButtonClick(event)}
+      >
+        Search
+      </button>
+    </form>
+  );
+};
