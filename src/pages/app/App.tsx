@@ -15,25 +15,16 @@ export const App = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    let ignore = false;
-
     const localTerm = localStorage.getItem('searchTermRSG');
-    getPageData(localTerm ?? '').then((result) => {
-      if (!ignore) {
-        setIsLoading(true);
-        setPageData(result);
-      }
-    });
-
-    return () => {
-      ignore = true;
-    };
+    const localPage = Number(localStorage.getItem('currentPageRSG')) || 1;
+    searchPokemons(localTerm ?? '', localPage);
   }, []);
 
-  const searchPokemons = (searchTerm: string, page?: number) => {
+  const searchPokemons = (searchTerm: string, page = 1) => {
     setIsLoading(false);
     getPageData(searchTerm, page).then((result) => {
       localStorage.setItem('searchTermRSG', searchTerm);
+      localStorage.setItem('currentPageRSG', String(page));
       setIsLoading(true);
       setPageData(result);
     });

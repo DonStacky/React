@@ -12,10 +12,8 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "*": [
-      "npm run format:fix",
-      "npm run lint"
-    ]
+    "*": "npm run format:fix",
+    "*.tsx": "npm run lint"
   },
   "dependencies": {
     "clsx": "^2.0.0",
