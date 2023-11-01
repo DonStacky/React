@@ -9,22 +9,27 @@ import './app.scss';
 export const App = () => {
   const [pageData, setPageData] = useState<PageData>({
     pageItems: [],
-    pagesQty: 1,
+    lastPage: 1,
     currentPage: 1,
+    itemQty: 0,
   });
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const localTerm = localStorage.getItem('searchTermRSG');
-    const localPage = Number(localStorage.getItem('currentPageRSG')) || 1;
-    searchPokemons(localTerm ?? '', localPage);
+
+    const [localItemQty, localCurrentPage] = localStorage
+      .getItem('pageDataRSG')
+      ?.split(',') || [8, 1];
+
+    searchPokemons(localTerm ?? '', +localItemQty, +localCurrentPage);
   }, []);
 
-  const searchPokemons = (searchTerm: string, page = 1) => {
+  const searchPokemons = (searchTerm: string, itemQty = 8, page = 1) => {
     setIsLoading(false);
-    getPageData(searchTerm, page).then((result) => {
+    getPageData(searchTerm, itemQty, page).then((result) => {
       localStorage.setItem('searchTermRSG', searchTerm);
-      localStorage.setItem('currentPageRSG', String(page));
+      localStorage.setItem('pageDataRSG', [itemQty, page].join(','));
       setIsLoading(true);
       setPageData(result);
     });
@@ -35,13 +40,16 @@ export const App = () => {
 
     const newCurrentPage = switchPage(pageData, destination);
 
-    searchPokemons(localTerm ?? '', newCurrentPage);
+    searchPokemons(localTerm ?? '', pageData.itemQty, newCurrentPage);
   };
 
   return (
     <>
       <header className="header">
-        <SearchField search={searchPokemons} />
+        <SearchField
+          search={searchPokemons}
+          curretnItemQty={pageData.itemQty}
+        />
       </header>
       <main>
         <ResultField

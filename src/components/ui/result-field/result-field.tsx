@@ -33,7 +33,7 @@ export const ResultField = ({ pageData, loader, changePage }: Props) => {
         </div>
         <Pagination
           currentPage={pageData.currentPage}
-          pagesQty={pageData.pagesQty}
+          lastPage={pageData.lastPage}
           changePage={onPaginate}
         ></Pagination>
       </div>

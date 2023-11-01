@@ -1,8 +1,12 @@
 import { PokemonData, ResultData } from '../../../shared/types';
 
-const POKEMONS_LIMIT = 8;
+// const POKEMONS_LIMIT = 8;
 
-export async function getPageData(searchTerm?: string, currentPage = 1) {
+export async function getPageData(
+  searchTerm?: string,
+  itemQty = 8,
+  currentPage = 1
+) {
   const response = await fetch(
     'https://pokeapi.co/api/v2/pokemon?limit=1270&offset=0'
   );
@@ -16,10 +20,10 @@ export async function getPageData(searchTerm?: string, currentPage = 1) {
   }
 
   const pageItems: PokemonData[] = [];
-  const pagesQty = Math.ceil(results.length / 8);
+  const pagesQty = Math.ceil(results.length / itemQty);
 
-  const sequenceStart = POKEMONS_LIMIT * (currentPage - 1);
-  const sequenceEnd = POKEMONS_LIMIT * currentPage;
+  const sequenceStart = itemQty * (currentPage - 1);
+  const sequenceEnd = itemQty * currentPage;
   const sequenceLimit =
     sequenceEnd > results.length ? results.length : sequenceEnd;
 
@@ -35,7 +39,7 @@ export async function getPageData(searchTerm?: string, currentPage = 1) {
     }
   }
 
-  return { pageItems, pagesQty, currentPage };
+  return { pageItems, lastPage: pagesQty, currentPage, itemQty };
 }
 
 async function getPokemons(results: ResultData[], pokemonNumber: number) {

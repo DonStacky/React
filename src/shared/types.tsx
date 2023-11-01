@@ -7,8 +7,9 @@ export type PokemonData = {
 
 export type PageData = {
   pageItems: PokemonData[];
-  pagesQty: number;
+  lastPage: number;
   currentPage: number;
+  itemQty: number;
 };
 
 export type ResultData = {

@@ -8,7 +8,7 @@ export const switchPage = (pageData: PageData, destination: string) => {
       newCurrentPage = 1;
       break;
     case 'lastPage':
-      newCurrentPage = pageData.pagesQty;
+      newCurrentPage = pageData.lastPage;
       break;
     case 'nextPage':
       newCurrentPage = pageData.currentPage + 1;

@@ -3,11 +3,11 @@ import './pagination.scss';
 
 type Props = {
   currentPage: number;
-  pagesQty: number;
+  lastPage: number;
   changePage: (destination: string) => void;
 };
 
-export const Pagination = ({ currentPage, pagesQty, changePage }: Props) => {
+export const Pagination = ({ currentPage, lastPage, changePage }: Props) => {
   const handleClick = (destination: string) => {
     changePage(destination);
   };
@@ -27,17 +27,17 @@ export const Pagination = ({ currentPage, pagesQty, changePage }: Props) => {
         &lt;
       </Button>
       <Button className="button--outcursor">
-        {`${currentPage} of ${pagesQty}`}
+        {`${currentPage} of ${lastPage}`}
       </Button>
       <Button
         onClick={() => handleClick('nextPage')}
-        className={currentPage === pagesQty ? 'button--disable' : ''}
+        className={currentPage === lastPage ? 'button--disable' : ''}
       >
         &gt;
       </Button>
       <Button
         onClick={() => handleClick('lastPage')}
-        className={currentPage === pagesQty ? 'button--disable' : ''}
+        className={currentPage === lastPage ? 'button--disable' : ''}
       >
         &gt;&gt;
       </Button>
