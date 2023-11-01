@@ -2,7 +2,7 @@
   border-radius: 8px;
   background-color: $primaryColor;
   box-shadow: $shadow;
-  max-width: 16rem;
+  width: 16rem;
   margin: 0 auto;
 
   &__imgbox {
@@ -20,6 +20,9 @@
   }
 
   &__title {
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
     font-weight: 700;
     padding: 0 1rem;
     margin: 0.5rem 0;

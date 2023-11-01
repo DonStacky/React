@@ -4,3 +4,14 @@ export type PokemonData = {
   description: string;
   image: string;
 };
+
+export type PageData = {
+  pageItems: PokemonData[];
+  pagesQty: number;
+  currentPage: number;
+};
+
+export type ResultData = {
+  name: string;
+  url: string;
+};

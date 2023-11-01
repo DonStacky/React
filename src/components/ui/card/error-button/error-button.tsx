@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './error-button.scss';
+import { Button } from '../../button/button';
 
 export const ErrorButton = () => {
   const [isError, setIsError] = useState(false);
@@ -12,9 +12,9 @@ export const ErrorButton = () => {
     throw new Error();
   } else {
     return (
-      <button className="error-button" onClick={handleClick}>
+      <Button onClick={handleClick} className="button--error">
         Error
-      </button>
+      </Button>
     );
   }
 };
