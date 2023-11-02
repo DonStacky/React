@@ -21,4 +21,10 @@
   &__title {
     font-size: 3rem;
   }
+
+  &__link {
+    cursor: pointer;
+    text-decoration: underline;
+    color: $secondaryColor;
+  }
 }

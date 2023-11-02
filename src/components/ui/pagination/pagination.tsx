@@ -1,27 +1,25 @@
+import { useNavigate } from 'react-router-dom';
 import { Button } from '../button/button';
 import './pagination.scss';
 
 type Props = {
   currentPage: number;
   lastPage: number;
-  changePage: (destination: string) => void;
 };
 
-export const Pagination = ({ currentPage, lastPage, changePage }: Props) => {
-  const handleClick = (destination: string) => {
-    changePage(destination);
-  };
+export const Pagination = ({ currentPage, lastPage }: Props) => {
+  const navigate = useNavigate();
 
   return (
     <div className="pagination-box">
       <Button
-        onClick={() => handleClick('firstPage')}
+        onClick={() => navigate('/page/1')}
         className={currentPage === 1 ? 'button--disable' : ''}
       >
         &lt;&lt;
       </Button>
       <Button
-        onClick={() => handleClick('prevPage')}
+        onClick={() => navigate(`/page/${currentPage - 1}`)}
         className={currentPage === 1 ? 'button--disable' : ''}
       >
         &lt;
@@ -30,13 +28,13 @@ export const Pagination = ({ currentPage, lastPage, changePage }: Props) => {
         {`${currentPage} of ${lastPage}`}
       </Button>
       <Button
-        onClick={() => handleClick('nextPage')}
+        onClick={() => navigate(`/page/${currentPage + 1}`)}
         className={currentPage === lastPage ? 'button--disable' : ''}
       >
         &gt;
       </Button>
       <Button
-        onClick={() => handleClick('lastPage')}
+        onClick={() => navigate(`/page/${lastPage}`)}
         className={currentPage === lastPage ? 'button--disable' : ''}
       >
         &gt;&gt;

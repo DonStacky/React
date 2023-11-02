@@ -1,16 +1,23 @@
-import ReactDOM from 'react-dom/client';
-import { App } from './pages/app/App';
 import { StrictMode } from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import ReactDOM from 'react-dom/client';
+import {
+  Route,
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+} from 'react-router-dom';
+import { ResultField } from './components/ui/result-field/result-field';
+import { App } from './pages/app/App';
 import { ErrorPage } from './pages/error-page/error-page';
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <App />,
-    errorElement: <ErrorPage />,
-  },
-]);
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<App />} errorElement={<ErrorPage />}>
+      <Route index element={<ResultField />} />
+      <Route path="page/:pageNumber" element={<ResultField />} />
+    </Route>
+  )
+);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <StrictMode>

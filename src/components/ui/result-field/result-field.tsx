@@ -1,22 +1,35 @@
+import { useEffect, useState } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
 import { PageData } from '../../../shared/types';
+import { getPageData } from '../../model/api/get-page-data';
 import { Card } from '../card/card';
 import { Loader } from '../loader/loader';
 import { NotFound } from '../not-found/not-found';
 import { Pagination } from '../pagination/pagination';
 import './result-field.scss';
 
-type Props = {
-  pageData: PageData;
-  loader: boolean;
-  changePage: (description: string) => void;
-};
+export const ResultField = () => {
+  const searchTerm = useLocation().search.split('=')[1]; //TODO change anything
 
-export const ResultField = ({ pageData, loader, changePage }: Props) => {
-  const onPaginate = (destination: string) => {
-    changePage(destination);
-  };
+  const [isLoading, setIsLoading] = useState(true);
+  const [pageData, setPageData] = useState<PageData>({
+    pageItems: [],
+    lastPage: 1,
+    currentPage: 1,
+    itemQty: 0,
+  });
 
-  if (!loader) {
+  const { pageNumber } = useParams();
+
+  useEffect(() => {
+    setIsLoading(true);
+    getPageData(searchTerm || '', 8, Number(pageNumber) || 1).then((result) => {
+      setPageData(result);
+      setIsLoading(false);
+    });
+  }, [pageNumber, searchTerm]);
+
+  if (isLoading) {
     return <Loader />;
   } else if (pageData.pageItems.length) {
     return (
@@ -34,7 +47,6 @@ export const ResultField = ({ pageData, loader, changePage }: Props) => {
         <Pagination
           currentPage={pageData.currentPage}
           lastPage={pageData.lastPage}
-          changePage={onPaginate}
         ></Pagination>
       </div>
     );

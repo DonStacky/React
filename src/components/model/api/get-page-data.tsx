@@ -3,7 +3,7 @@ import { PokemonData, ResultData } from '../../../shared/types';
 // const POKEMONS_LIMIT = 8;
 
 export async function getPageData(
-  searchTerm?: string,
+  searchTerm = '',
   itemQty = 8,
   currentPage = 1
 ) {
