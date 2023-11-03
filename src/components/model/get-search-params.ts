@@ -7,9 +7,9 @@ export function useGetSearchParams() {
     .getItem('queryDataRSG')
     ?.split('&') || ['', ''];
 
-  const searchTerm = searchParams.get('search') || localSearchTerm;
+  const searchTerm = searchParams.get('search') ?? localSearchTerm;
 
-  const itemQty = searchParams.get('itemqty') || localItemQty;
+  const itemQty = searchParams.get('itemqty') ?? localItemQty;
 
   return [searchTerm, itemQty];
 }

@@ -6,7 +6,7 @@ export async function getPageData(
   currentPage = 1
 ) {
   const response = await fetch(
-    'https://pokeapi.co/api/v2/pokemon?limit=1270&offset=0'
+    'https://pokeapi.co/api/v2/pokemon?limit=1000&offset=0'
   );
   const json = await response.json();
   let results: ResultData[] = json.results;
@@ -31,7 +31,7 @@ export async function getPageData(
     pokemonNumber++
   ) {
     try {
-      pageItems.push(await getPokemons(results, pokemonNumber));
+      pageItems.push(await getPokemonsData(results, pokemonNumber));
     } catch (e) {
       console.log(e);
     }
@@ -40,7 +40,7 @@ export async function getPageData(
   return { pageItems, lastPage: pagesQty, currentPage, itemQty };
 }
 
-async function getPokemons(results: ResultData[], pokemonNumber: number) {
+async function getPokemonsData(results: ResultData[], pokemonNumber: number) {
   const name =
     results[pokemonNumber].name[0].toUpperCase() +
     results[pokemonNumber].name.slice(1);

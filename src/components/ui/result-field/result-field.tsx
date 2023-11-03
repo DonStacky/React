@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import { PageData } from '../../../shared/types';
 import { getPageData } from '../../model/api/get-page-data';
 import { useGetSearchParams } from '../../model/get-search-params';
@@ -39,22 +39,26 @@ export const ResultField = () => {
     return <Loader />;
   } else if (pageData.pageItems.length) {
     return (
-      <div className="container">
-        <div className="result-field">
-          {pageData.pageItems.map((item) => (
-            <Card
-              key={item.id}
-              name={item.name}
-              description={item.description}
-              image={item.image}
-            />
-          ))}
+      <>
+        <div className="container">
+          <div className="result-field">
+            {pageData.pageItems.map((item) => (
+              <Card
+                key={item.id}
+                id={item.id}
+                name={item.name}
+                description={item.description}
+                image={item.image}
+              />
+            ))}
+            <Outlet />
+          </div>
+          <Pagination
+            currentPage={pageData.currentPage}
+            lastPage={pageData.lastPage}
+          ></Pagination>
         </div>
-        <Pagination
-          currentPage={pageData.currentPage}
-          lastPage={pageData.lastPage}
-        ></Pagination>
-      </div>
+      </>
     );
   } else {
     return <NotFound />;
