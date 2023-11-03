@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { PageData } from '../../../shared/types';
 import { getPageData } from '../../model/api/get-page-data';
+import { useGetSearchParams } from '../../model/get-search-params';
 import { Card } from '../card/card';
 import { Loader } from '../loader/loader';
 import { NotFound } from '../not-found/not-found';
@@ -9,7 +10,7 @@ import { Pagination } from '../pagination/pagination';
 import './result-field.scss';
 
 export const ResultField = () => {
-  const searchTerm = useLocation().search.split('=')[1]; //TODO change anything
+  const [searchTerm, itemQty] = useGetSearchParams();
 
   const [isLoading, setIsLoading] = useState(true);
   const [pageData, setPageData] = useState<PageData>({
@@ -23,11 +24,16 @@ export const ResultField = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    getPageData(searchTerm || '', 8, Number(pageNumber) || 1).then((result) => {
-      setPageData(result);
-      setIsLoading(false);
-    });
-  }, [pageNumber, searchTerm]);
+
+    getPageData(searchTerm, Number(itemQty) || 8, Number(pageNumber) || 1).then(
+      (result) => {
+        setPageData(result);
+        setIsLoading(false);
+      }
+    );
+
+    localStorage.setItem('queryDataRSG', `${searchTerm}&${itemQty}`);
+  }, [pageNumber, searchTerm, itemQty]);
 
   if (isLoading) {
     return <Loader />;

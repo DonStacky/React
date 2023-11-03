@@ -1,42 +1,26 @@
 import { useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useGetSearchParams } from '../../model/get-search-params';
 import './search-field.scss';
 
 export const SearchField = () => {
-  // let initTerm = '';
-  // const localTerm = localStorage.getItem('searchTermRSG');
-  // if (localTerm) initTerm = localTerm;
-
-  // const [itemQty, setItemQty] = useState(8);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [inputValue, setInputValue] = useState(searchParams.get('search'));
-
-  // const handleButtonClick = (event: React.FormEvent<HTMLButtonElement>) => {
-  //   event.preventDefault();
-  //   console.log(itemQty);
-  //   // search(searchTerm, itemQty);
-  // };
+  const [initSearchTerm, initItemQty] = useGetSearchParams();
+  const [searchTerm, setsearchTerm] = useState(initSearchTerm);
+  const [itemQty, setItemQty] = useState(initItemQty);
+  const navigate = useNavigate();
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value);
+    setsearchTerm(event.target.value);
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    setSearchParams({ search: inputValue ?? '' });
+    navigate(`page/1?search=${searchTerm}&itemqty=${itemQty}`);
   };
 
-  // const handleChangeItemQty = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   const newPageQty =
-  //     Number(event.target.value) > 20
-  //       ? 20
-  //       : Number(event.target.value) < 2
-  //       ? 2
-  //       : Number(event.target.value);
-
-  //   // setItemQty(newPageQty);
-  // };
+  const handleChangeItemQty = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setItemQty(String(event.target.value));
+  };
 
   return (
     <form className="search-field__form container" onSubmit={handleSubmit}>
@@ -45,7 +29,7 @@ export const SearchField = () => {
         className="search-field__input"
         placeholder={'Enter to search'}
         autoComplete="off"
-        value={inputValue || ''}
+        value={searchTerm || ''}
         onChange={handleInputChange}
       />
       <div className="search-field__input--number">
@@ -53,16 +37,12 @@ export const SearchField = () => {
           type="number"
           min="2"
           max="20"
-          title="2 ... 20"
-          placeholder={`${/* curretnItemQty */ 8} items`}
-          // onChange={handleChangeItemQty}
+          placeholder={`${itemQty || 8} items`}
+          value={itemQty || ''}
+          onChange={handleChangeItemQty}
         />
       </div>
-      <button
-        type="submit"
-        className="search-field__button"
-        // onClick={handleButtonClick}
-      >
+      <button type="submit" className="search-field__button">
         Search
       </button>
     </form>

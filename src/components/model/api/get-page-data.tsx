@@ -1,7 +1,5 @@
 import { PokemonData, ResultData } from '../../../shared/types';
 
-// const POKEMONS_LIMIT = 8;
-
 export async function getPageData(
   searchTerm = '',
   itemQty = 8,
