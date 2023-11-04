@@ -49,6 +49,7 @@ export const ResultField = () => {
                 name={item.name}
                 description={item.description}
                 image={item.image}
+                page={pageData.currentPage}
               />
             ))}
             <Outlet />

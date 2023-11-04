@@ -8,17 +8,21 @@ type CardProps = {
   name: string;
   description: string;
   image: string;
+  page: number;
 };
 
-export const Card = ({ id, name, description, image }: CardProps) => {
+export const Card = ({ id, name, description, image, page }: CardProps) => {
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    navigate(`details/${id}`);
+  const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    const target = event.target as HTMLElement;
+    if (target.tagName === 'BUTTON') return;
+
+    navigate(`/page/${page}/details/${id}`);
   };
 
   return (
-    <ErrorBoundary>
+    <ErrorBoundary page={page}>
       <div className="card" onClick={handleClick}>
         <div className="card__imgbox">
           <img className="card__img" src={image} alt={name} />

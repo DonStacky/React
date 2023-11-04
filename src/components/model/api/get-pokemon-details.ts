@@ -1,24 +1,29 @@
+import { DetailsData } from '../../../shared/types';
+import { pepeData } from '../../../assets/data/pepe-data';
+
 export async function getPokemonDetails(id: number) {
+  if (id === 0) return pepeData;
+
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
   const json = await response.json();
   const results = json;
   const abilitiesResp = results.abilities;
 
-  const name = results.name;
-  const image = json.sprites.other['official-artwork'].front_default;
-  const height = `${json.height / 10} m`;
-  const weight = `${json.weight / 10} kg`;
-  const types = json.types.map(
+  const name: string = results.name;
+  const image: string = json.sprites.other['official-artwork'].front_default;
+  const height: string = `${json.height / 10} m`;
+  const weight: string = `${json.weight / 10} kg`;
+  const types: string[] = json.types.map(
     (item: { type: { name: string } }) => item.type.name
   );
-  const abilities = [];
+  const abilities: string[][] = [];
 
   for (let i = 0; i < abilitiesResp.length; i++) {
     const item = abilitiesResp[i];
     const response = await fetch(item.ability.url);
     const json = await response.json();
-    const abilityName = json.name;
-    const abilityText =
+    const abilityName: string = json.name;
+    const abilityText: string =
       json.effect_entries.filter(
         (item: { language: { name: string } }) => item.language.name === 'en'
       )[0]?.effect || '';
@@ -36,7 +41,17 @@ export async function getPokemonDetails(id: number) {
   const evolutionChain = getEvolutionChain(chain);
   const evolutionData = await getEvolutionData(evolutionChain);
 
-  return { name, image, abilities, types, height, weight, evolutionData };
+  const details: DetailsData = {
+    name,
+    image,
+    abilities,
+    types,
+    height,
+    weight,
+    evolutionData,
+  };
+
+  return details;
 }
 
 type EvolutionLink = { name: string };
@@ -63,7 +78,7 @@ async function getEvolutionData(chain: EvolutionLink[]) {
       `https://pokeapi.co/api/v2/pokemon/${chain[link].name}`
     );
     const json = await response.json();
-    const image = json.sprites.other['official-artwork'].front_default;
+    const image: string = json.sprites.other['official-artwork'].front_default;
 
     evolutionData.push({ name: chain[link].name, image });
   }
