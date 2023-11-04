@@ -9,13 +9,13 @@ export async function getPokemonDetails(id: number) {
   const results = json;
   const abilitiesResp = results.abilities;
 
-  const name: string = results.name;
+  const name: string = results.name[0].toUpperCase() + results.name.slice(1);
   const image: string = json.sprites.other['official-artwork'].front_default;
   const height: string = `${json.height / 10} m`;
   const weight: string = `${json.weight / 10} kg`;
-  const types: string[] = json.types.map(
-    (item: { type: { name: string } }) => item.type.name
-  );
+  const types: string[] = json.types
+    .map((item: { type: { name: string } }) => item.type.name)
+    .join(', ');
   const abilities: string[][] = [];
 
   for (let i = 0; i < abilitiesResp.length; i++) {
