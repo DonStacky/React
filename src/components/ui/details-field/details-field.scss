@@ -1,0 +1,38 @@
+.details {
+  position: fixed;
+  top: 5rem;
+  right: 2rem;
+  background-color: $primaryColor;
+  height: 100%;
+  max-height: 80vh;
+  width: 40rem;
+  border-radius: 8px;
+  border: 1px solid black;
+  padding: 2rem;
+  text-align: center;
+
+  &__button {
+    cursor: pointer;
+  }
+
+  &__btn-box {
+    position: absolute;
+    cursor: pointer;
+    right: 1rem;
+    top: 1rem;
+    padding: 1rem;
+  }
+
+  &__overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #00000044;
+  }
+
+  &__img {
+    height: 25rem;
+  }
+}
