@@ -1,13 +1,12 @@
-import { PokemonData, ResultData } from '../../../shared/types';
+import { PokemonData, ResultData } from '../../shared/types';
+import { BASE_URL } from './constants';
 
 export async function getPageData(
   searchTerm = '',
   itemQty = 8,
   currentPage = 1
 ) {
-  const response = await fetch(
-    'https://pokeapi.co/api/v2/pokemon?limit=1000&offset=0'
-  );
+  const response = await fetch(BASE_URL + '?limit=1000&offset=0');
   const json = await response.json();
   let results: ResultData[] = json.results;
 

@@ -6,11 +6,11 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from 'react-router-dom';
-import { DetailsField } from './components/ui/details-field/details-field';
+import { DetailedCard } from './components/ui/detailed-card/detailed-card';
 import { ResultField } from './components/ui/result-field/result-field';
 import { App } from './pages/app/App';
 import { ErrorPage } from './pages/error-page/error-page';
-import { detailsLoader } from './components/ui/details-field/details-field';
+import { detailsLoader } from './components/ui/detailed-card/detailed-card';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,7 +19,7 @@ const router = createBrowserRouter(
       <Route path="page/:pageNumber" element={<ResultField />}>
         <Route
           path="details/:detailsID"
-          element={<DetailsField />}
+          element={<DetailedCard />}
           loader={detailsLoader}
         />
       </Route>

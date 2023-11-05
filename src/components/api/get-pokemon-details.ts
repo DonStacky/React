@@ -1,10 +1,11 @@
-import { DetailsData } from '../../../shared/types';
-import { pepeData } from '../../../assets/data/pepe-data';
+import { pepeData } from '../../assets/data/pepe-data';
+import { DetailsData } from '../../shared/types';
+import { BASE_URL } from './constants';
 
 export async function getPokemonDetails(id: number) {
   if (id === 0) return pepeData;
 
-  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+  const response = await fetch(BASE_URL + `/${id}`);
   const json = await response.json();
   const results = json;
   const abilitiesResp = results.abilities;
@@ -74,9 +75,7 @@ async function getEvolutionData(chain: EvolutionLink[]) {
   const evolutionData = [];
 
   for (let link = 0; link < chain.length; link++) {
-    const response = await fetch(
-      `https://pokeapi.co/api/v2/pokemon/${chain[link].name}`
-    );
+    const response = await fetch(BASE_URL + `/${chain[link].name}`);
     const json = await response.json();
     const image: string = json.sprites.other['official-artwork'].front_default;
 

@@ -1,16 +1,15 @@
 import { useEffect, useState } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
 import { PageData } from '../../../shared/types';
-import { getPageData } from '../../model/api/get-page-data';
+import { getPageData } from '../../api/get-page-data';
 import { useGetSearchParams } from '../../model/get-search-params';
 import { Card } from '../card/card';
 import { Loader } from '../loader/loader';
-import { NotFound } from '../not-found/not-found';
 import { Pagination } from '../pagination/pagination';
 import './result-field.scss';
 
 export const ResultField = () => {
-  const [searchTerm, itemQty] = useGetSearchParams();
+  const { searchTerm, itemQty } = useGetSearchParams();
 
   const [isLoading, setIsLoading] = useState(true);
   const [pageData, setPageData] = useState<PageData>({
@@ -25,7 +24,7 @@ export const ResultField = () => {
   useEffect(() => {
     setIsLoading(true);
 
-    getPageData(searchTerm, Number(itemQty) || 8, Number(pageNumber) || 1).then(
+    getPageData(searchTerm, itemQty || 8, Number(pageNumber) || 1).then(
       (result) => {
         setPageData(result);
         setIsLoading(false);
@@ -62,6 +61,6 @@ export const ResultField = () => {
       </>
     );
   } else {
-    return <NotFound />;
+    return <p className="bad-request">Nothing was found for your request...</p>;
   }
 };

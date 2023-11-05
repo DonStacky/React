@@ -1,6 +1,11 @@
 import { useSearchParams } from 'react-router-dom';
 
-export function useGetSearchParams() {
+type SearchParams = {
+  searchTerm: string;
+  itemQty: number;
+};
+
+export function useGetSearchParams(): SearchParams {
   const [searchParams] = useSearchParams();
 
   const [localSearchTerm, localItemQty] = localStorage
@@ -11,5 +16,5 @@ export function useGetSearchParams() {
 
   const itemQty = searchParams.get('itemqty') ?? localItemQty;
 
-  return [searchTerm, itemQty];
+  return { searchTerm, itemQty: Number(itemQty) };
 }

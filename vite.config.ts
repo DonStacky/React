@@ -8,6 +8,7 @@ export default defineConfig({
     alias: {
       fonts: '/public/fonts',
       image: '/src/assets/image',
+      data: '/src/assets/data',
     },
   },
   css: {

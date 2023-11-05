@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGetSearchParams } from '../../model/get-search-params';
 import './search-field.scss';
+import { getURL } from '../../model/get-url';
 
 export const SearchField = () => {
-  const [initSearchTerm, initItemQty] = useGetSearchParams();
+  const { searchTerm: initSearchTerm, itemQty: initItemQty } =
+    useGetSearchParams();
   const [searchTerm, setsearchTerm] = useState(initSearchTerm);
   const [itemQty, setItemQty] = useState(initItemQty);
   const navigate = useNavigate();
@@ -15,11 +17,11 @@ export const SearchField = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    navigate(`page/1?search=${searchTerm}&itemqty=${itemQty}`);
+    navigate(getURL(1, searchTerm, itemQty));
   };
 
   const handleChangeItemQty = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setItemQty(String(event.target.value));
+    setItemQty(Number(event.target.value));
   };
 
   return (

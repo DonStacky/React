@@ -1,21 +1,21 @@
+import { Suspense } from 'react';
 import {
-  useLoaderData,
+  Await,
   LoaderFunctionArgs,
   defer,
-  Await,
+  useLoaderData,
   useNavigate,
 } from 'react-router-dom';
-import { getPokemonDetails } from '../../model/api/get-pokemon-details';
 import { DetailsData } from '../../../shared/types';
-import './details-field.scss';
+import { getPokemonDetails } from '../../api/get-pokemon-details';
 import { Loader } from '../loader/loader';
-import { Suspense } from 'react';
+import './detailed-card.scss';
 
 type LoaderData = {
   details: DetailsData;
 };
 
-export function DetailsField() {
+export function DetailedCard() {
   const { details } = useLoaderData() as LoaderData;
   const navigate = useNavigate();
 
