@@ -7,10 +7,9 @@ export async function getPokemonDetails(id: number) {
 
   const response = await fetch(BASE_URL + `/${id}`);
   const json = await response.json();
-  const results = json;
-  const abilitiesResp = results.abilities;
+  const abilitiesResp = json.abilities;
 
-  const name: string = results.name[0].toUpperCase() + results.name.slice(1);
+  const name: string = json.name[0].toUpperCase() + json.name.slice(1);
   const image: string = json.sprites.other['official-artwork'].front_default;
   const height: string = `${json.height / 10} m`;
   const weight: string = `${json.weight / 10} kg`;
@@ -32,13 +31,13 @@ export async function getPokemonDetails(id: number) {
     abilities.push([abilityName, abilityText]);
   }
 
-  const pokemonSpeciesUrl = json.species.url;
+  const pokemonSpeciesUrl: string = json.species.url;
   const pokemonSpeciesResponse = await fetch(pokemonSpeciesUrl);
   const pokemonSpecies = await pokemonSpeciesResponse.json();
   const evolutionChainResponse = await fetch(
     pokemonSpecies.evolution_chain.url
   );
-  const chain = (await evolutionChainResponse.json()).chain;
+  const chain: EvolutionChain = (await evolutionChainResponse.json()).chain;
   const evolutionChain = getEvolutionChain(chain);
   const evolutionData = await getEvolutionData(evolutionChain);
 

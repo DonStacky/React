@@ -48,18 +48,18 @@ async function getPokemonsData(results: ResultData[], pokemonNumber: number) {
   const response = await fetch(details);
   const json = await response.json();
 
-  const abilityURL =
+  const abilityURL: string =
     json?.abilities[1]?.ability.url || json?.abilities[0].ability.url;
   const abilityResp = await fetch(abilityURL);
   const abilityJson = await abilityResp.json();
-  const abilityDesc =
+  const abilityDesc: string =
     abilityJson.effect_entries.filter(
       (item: { language: { name: string } }) => item.language.name === 'en'
     )[0]?.effect || `He uses ${abilityJson.name}`;
 
-  const imageURL = json.sprites.other['official-artwork'].front_default;
+  const imageURL: string = json.sprites.other['official-artwork'].front_default;
 
-  const id = json.id;
+  const id: number = json.id;
 
   const pageItem: PokemonData = {
     id,
