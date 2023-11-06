@@ -1,27 +1,28 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useGetSearchParams } from '../../model/get-search-params';
-import './search-field.scss';
+import { SearchContext } from '../../../pages/app/App';
 import { getURL } from '../../model/get-url';
+import './search-field.scss';
 
 export const SearchField = () => {
-  const { searchTerm: initSearchTerm, itemQty: initItemQty } =
-    useGetSearchParams();
-  const [searchTerm, setsearchTerm] = useState(initSearchTerm);
-  const [itemQty, setItemQty] = useState(initItemQty);
+  const { searchParams, setSearchParams } = useContext(SearchContext);
+  const { searchTerm, itemQty } = searchParams;
   const navigate = useNavigate();
+  const [currentTerm, setCurrentTerm] = useState(searchTerm);
+  const [currentItemQty, setCurrentItemQty] = useState(itemQty);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setsearchTerm(event.target.value);
+    setCurrentTerm(event.target.value);
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    navigate(getURL(1, searchTerm, itemQty));
+    setSearchParams({ searchTerm: currentTerm, itemQty: currentItemQty });
+    navigate(getURL(1, currentTerm, currentItemQty));
   };
 
   const handleChangeItemQty = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setItemQty(Number(event.target.value));
+    setCurrentItemQty(Number(event.target.value));
   };
 
   return (
@@ -31,7 +32,7 @@ export const SearchField = () => {
         className="search-field__input"
         placeholder={'Enter to search'}
         autoComplete="off"
-        value={searchTerm || ''}
+        value={currentTerm || ''}
         onChange={handleInputChange}
       />
       <div className="search-field__input--number">
@@ -39,8 +40,8 @@ export const SearchField = () => {
           type="number"
           min="2"
           max="20"
-          placeholder={`${itemQty || 8} items`}
-          value={itemQty || ''}
+          placeholder={`${currentItemQty || 8} items`}
+          value={currentItemQty || ''}
           onChange={handleChangeItemQty}
         />
       </div>

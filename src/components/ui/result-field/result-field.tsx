@@ -1,15 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
+import { SearchContext } from '../../../pages/app/App';
 import { PageData } from '../../../shared/types';
 import { getPageData } from '../../api/get-page-data';
-import { useGetSearchParams } from '../../model/get-search-params';
 import { Card } from '../card/card';
 import { Loader } from '../loader/loader';
 import { Pagination } from '../pagination/pagination';
 import './result-field.scss';
 
 export const ResultField = () => {
-  const { searchTerm, itemQty } = useGetSearchParams();
+  const { searchParams } = useContext(SearchContext);
+  const { searchTerm, itemQty } = searchParams;
 
   const [isLoading, setIsLoading] = useState(true);
   const [pageData, setPageData] = useState<PageData>({

@@ -1,5 +1,6 @@
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useGetSearchParams } from '../../model/get-search-params';
+import { SearchContext } from '../../../pages/app/App';
 import { getURL } from '../../model/get-url';
 import { Button } from '../button/button';
 import './pagination.scss';
@@ -11,7 +12,8 @@ type Props = {
 
 export const Pagination = ({ currentPage, lastPage }: Props) => {
   const navigate = useNavigate();
-  const { searchTerm, itemQty } = useGetSearchParams();
+  const { searchParams } = useContext(SearchContext);
+  const { searchTerm, itemQty } = searchParams;
 
   return (
     <div className="pagination-box">
