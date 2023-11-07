@@ -1,8 +1,8 @@
-import { Outlet } from 'react-router-dom';
 import { createContext, useState } from 'react';
+import { Outlet } from 'react-router-dom';
+import { useGetSearchParams } from '../../components/model/get-search-params';
 import { SearchField } from '../../components/ui/search-field/search-field';
 import './app.scss';
-import { useGetSearchParams } from '../../components/model/get-search-params';
 
 interface SearchParams {
   searchTerm: string;
@@ -13,6 +13,7 @@ interface SearchContextType {
   searchParams: SearchParams;
   setSearchParams: React.Dispatch<React.SetStateAction<SearchParams>>;
 }
+
 export const SearchContext = createContext<SearchContextType>(
   {} as SearchContextType
 );
@@ -27,16 +28,14 @@ export const App = () => {
 
   return (
     <>
-      <header className="header">
-        <SearchContext.Provider value={{ searchParams, setSearchParams }}>
+      <SearchContext.Provider value={{ searchParams, setSearchParams }}>
+        <header className="header">
           <SearchField />
-        </SearchContext.Provider>
-      </header>
-      <main>
-        <SearchContext.Provider value={{ searchParams, setSearchParams }}>
+        </header>
+        <main>
           <Outlet />
-        </SearchContext.Provider>
-      </main>
+        </main>
+      </SearchContext.Provider>
       <footer></footer>
     </>
   );
