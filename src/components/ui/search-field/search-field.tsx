@@ -12,7 +12,7 @@ export const SearchField = () => {
   const [currentItemQty, setCurrentItemQty] = useState(itemQty);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCurrentTerm(event.target.value);
+    setCurrentTerm(event.target.value.trim());
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {

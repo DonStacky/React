@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1699387753273" clover="3.2.0">
+  <project timestamp="1699387753273" name="All files">
+    <metrics statements="34" coveredstatements="17" conditionals="15" coveredconditionals="6" methods="5" coveredmethods="3" elements="54" coveredelements="26" complexity="0" loc="34" ncloc="34" packages="2" files="3" classes="3"/>
+    <package name="api">
+      <metrics statements="32" coveredstatements="15" conditionals="11" coveredconditionals="2" methods="4" coveredmethods="2"/>
+      <file name="constants.ts" path="C:\Users\serge\OneDrive\Рабочий стол\Учеба Front-end\rsschool-react\React\src\components\api\constants.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+      <file name="get-page-data.tsx" path="C:\Users\serge\OneDrive\Рабочий стол\Учеба Front-end\rsschool-react\React\src\components\api\get-page-data.tsx">
+        <metrics statements="31" coveredstatements="14" conditionals="11" coveredconditionals="2" methods="4" coveredmethods="2"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="13" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="25" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="47" count="1" type="stmt"/>
+        <line num="49" count="1" type="stmt"/>
+        <line num="50" count="1" type="stmt"/>
+        <line num="51" count="1" type="stmt"/>
+        <line num="52" count="1" type="stmt"/>
+        <line num="55" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="57" count="1" type="stmt"/>
+        <line num="58" count="1" type="stmt"/>
+        <line num="60" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="61" count="1" type="stmt"/>
+        <line num="64" count="1" type="stmt"/>
+        <line num="66" count="1" type="stmt"/>
+        <line num="68" count="1" type="stmt"/>
+        <line num="75" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="model">
+      <metrics statements="2" coveredstatements="2" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
+      <file name="get-url.ts" path="C:\Users\serge\OneDrive\Рабочий стол\Учеба Front-end\rsschool-react\React\src\components\model\get-url.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
+        <line num="2" count="6" type="cond" truecount="4" falsecount="0"/>
+        <line num="4" count="6" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
