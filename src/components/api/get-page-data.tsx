@@ -49,7 +49,6 @@ export async function getPokemonsData(
   const details = results[pokemonNumber].url;
   const response = await fetch(details);
   const json = await response.json();
-  console.log(json);
 
   const abilityURL: string =
     json?.abilities[1]?.ability.url || json?.abilities[0].ability.url;

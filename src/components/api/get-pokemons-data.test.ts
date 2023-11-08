@@ -74,6 +74,7 @@ describe('get pokemon data', () => {
     });
 
     const pokemonsData = await getPokemonsData(getPokemonArg, 0);
+    expect(mockFetch).toHaveBeenCalledTimes(2);
     expect(pokemonsData).toEqual(result);
   });
 });

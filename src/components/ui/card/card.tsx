@@ -1,9 +1,9 @@
-import { ErrorBoundary } from '../../model/error-boundary';
-import { ErrorButton } from './error-button/error-button';
-import { useNavigate, Outlet } from 'react-router-dom';
-import './card.scss';
 import { useContext } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { ErrorBoundary } from '../../model/error-boundary';
 import { PageDataContext } from '../result-field/result-field';
+import './card.scss';
+import { ErrorButton } from './error-button/error-button';
 
 type CardProps = {
   id: number;
