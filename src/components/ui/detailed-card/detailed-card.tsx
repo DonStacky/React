@@ -22,7 +22,7 @@ export function DetailedCard() {
   return (
     <>
       <div className="details__overlay" onClick={() => navigate(-1)}></div>
-      <div className="details">
+      <div className="details" data-testid="detailed-card">
         <Suspense fallback={<Loader />}>
           <Await resolve={details}>
             {(resolvedDetails: DetailsData) => (

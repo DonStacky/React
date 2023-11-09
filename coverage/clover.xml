@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1699433818282" clover="3.2.0">
-  <project timestamp="1699433818282" name="All files">
-    <metrics statements="115" coveredstatements="39" conditionals="49" coveredconditionals="8" methods="30" coveredmethods="7" elements="194" coveredelements="54" complexity="0" loc="115" ncloc="115" packages="10" files="13" classes="13"/>
+<coverage generated="1699549930896" clover="3.2.0">
+  <project timestamp="1699549930896" name="All files">
+    <metrics statements="176" coveredstatements="85" conditionals="55" coveredconditionals="32" methods="45" coveredmethods="17" elements="276" coveredelements="134" complexity="0" loc="176" ncloc="176" packages="15" files="19" classes="19"/>
+    <package name="assets.data">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="pepe-data.ts" path="C:\Users\serge\OneDrive\Рабочий стол\Учеба Front-end\rsschool-react\React\src\assets\data\pepe-data.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="7" count="1" type="stmt"/>
+      </file>
+    </package>
     <package name="components.api">
-      <metrics statements="31" coveredstatements="14" conditionals="11" coveredconditionals="2" methods="4" coveredmethods="2"/>
+      <metrics statements="71" coveredstatements="14" conditionals="17" coveredconditionals="2" methods="9" coveredmethods="2"/>
       <file name="constants.ts" path="C:\Users\serge\OneDrive\Рабочий стол\Учеба Front-end\rsschool-react\React\src\components\api\constants.ts">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="2" type="stmt"/>
+        <line num="1" count="4" type="stmt"/>
       </file>
       <file name="get-page-data.tsx" path="C:\Users\serge\OneDrive\Рабочий стол\Учеба Front-end\rsschool-react\React\src\components\api\get-page-data.tsx">
-        <metrics statements="30" coveredstatements="13" conditionals="11" coveredconditionals="2" methods="4" coveredmethods="2"/>
+        <metrics statements="31" coveredstatements="13" conditionals="11" coveredconditionals="2" methods="4" coveredmethods="2"/>
         <line num="9" count="0" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
@@ -27,40 +34,83 @@
         <line num="33" count="0" type="stmt"/>
         <line num="35" count="0" type="stmt"/>
         <line num="39" count="0" type="stmt"/>
-        <line num="47" count="1" type="stmt"/>
-        <line num="49" count="1" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="48" count="1" type="stmt"/>
         <line num="50" count="1" type="stmt"/>
         <line num="51" count="1" type="stmt"/>
-        <line num="54" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="56" count="1" type="stmt"/>
+        <line num="52" count="1" type="stmt"/>
+        <line num="55" count="1" type="cond" truecount="1" falsecount="1"/>
         <line num="57" count="1" type="stmt"/>
-        <line num="59" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="60" count="1" type="stmt"/>
-        <line num="63" count="1" type="stmt"/>
-        <line num="65" count="1" type="stmt"/>
-        <line num="67" count="1" type="stmt"/>
-        <line num="74" count="1" type="stmt"/>
+        <line num="58" count="1" type="stmt"/>
+        <line num="60" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="61" count="1" type="stmt"/>
+        <line num="64" count="1" type="stmt"/>
+        <line num="66" count="1" type="stmt"/>
+        <line num="68" count="1" type="stmt"/>
+        <line num="75" count="1" type="stmt"/>
+      </file>
+      <file name="get-pokemon-details.ts" path="C:\Users\serge\OneDrive\Рабочий стол\Учеба Front-end\rsschool-react\React\src\components\api\get-pokemon-details.ts">
+        <metrics statements="39" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="5" coveredmethods="0"/>
+        <line num="6" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="27" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="65" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="66" count="0" type="stmt"/>
+        <line num="67" count="0" type="stmt"/>
+        <line num="69" count="0" type="stmt"/>
+        <line num="74" count="0" type="stmt"/>
+        <line num="76" count="0" type="stmt"/>
+        <line num="77" count="0" type="stmt"/>
+        <line num="78" count="0" type="stmt"/>
+        <line num="79" count="0" type="stmt"/>
+        <line num="81" count="0" type="stmt"/>
+        <line num="84" count="0" type="stmt"/>
       </file>
     </package>
     <package name="components.model">
-      <metrics statements="14" coveredstatements="6" conditionals="12" coveredconditionals="5" methods="5" coveredmethods="2"/>
+      <metrics statements="14" coveredstatements="11" conditionals="12" coveredconditionals="11" methods="5" coveredmethods="3"/>
       <file name="error-boundary.tsx" path="C:\Users\serge\OneDrive\Рабочий стол\Учеба Front-end\rsschool-react\React\src\components\model\error-boundary.tsx">
         <metrics statements="7" coveredstatements="4" conditionals="2" coveredconditionals="1" methods="3" coveredmethods="1"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="18" count="1" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="18" count="6" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
         <line num="25" count="0" type="stmt"/>
-        <line num="29" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="29" count="6" type="cond" truecount="1" falsecount="1"/>
         <line num="30" count="0" type="stmt"/>
-        <line num="41" count="1" type="stmt"/>
+        <line num="41" count="6" type="stmt"/>
       </file>
       <file name="get-search-params.ts" path="C:\Users\serge\OneDrive\Рабочий стол\Учеба Front-end\rsschool-react\React\src\components\model\get-search-params.ts">
-        <metrics statements="5" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="9" count="0" type="stmt"/>
-        <line num="11" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="15" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="17" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="19" count="0" type="stmt"/>
+        <metrics statements="5" coveredstatements="5" conditionals="6" coveredconditionals="6" methods="1" coveredmethods="1"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="11" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="15" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="17" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="19" count="2" type="stmt"/>
       </file>
       <file name="get-url.ts" path="C:\Users\serge\OneDrive\Рабочий стол\Учеба Front-end\rsschool-react\React\src\components\model\get-url.ts">
         <metrics statements="2" coveredstatements="2" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
@@ -72,58 +122,86 @@
       <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="button.tsx" path="C:\Users\serge\OneDrive\Рабочий стол\Учеба Front-end\rsschool-react\React\src\components\ui\button\button.tsx">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="11" count="1" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="12" count="16" type="stmt"/>
       </file>
     </package>
     <package name="components.ui.card">
-      <metrics statements="11" coveredstatements="5" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="1"/>
+      <metrics statements="12" coveredstatements="8" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="3"/>
       <file name="card.tsx" path="C:\Users\serge\OneDrive\Рабочий стол\Учеба Front-end\rsschool-react\React\src\components\ui\card\card.tsx">
-        <metrics statements="11" coveredstatements="5" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="1"/>
-        <line num="16" count="1" type="stmt"/>
-        <line num="17" count="1" type="stmt"/>
-        <line num="19" count="1" type="stmt"/>
+        <metrics statements="12" coveredstatements="8" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="3"/>
+        <line num="16" count="2" type="stmt"/>
+        <line num="17" count="6" type="stmt"/>
+        <line num="19" count="6" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
         <line num="21" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="22" count="0" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
-        <line num="26" count="1" type="stmt"/>
-        <line num="40" count="1" type="stmt"/>
-        <line num="41" count="0" type="stmt"/>
-        <line num="43" count="0" type="stmt"/>
-        <line num="46" count="0" type="stmt"/>
+        <line num="26" count="6" type="stmt"/>
+        <line num="40" count="2" type="stmt"/>
+        <line num="41" count="3" type="stmt"/>
+        <line num="43" count="3" type="stmt"/>
+        <line num="46" count="5" type="stmt"/>
       </file>
     </package>
     <package name="components.ui.card.error-button">
       <metrics statements="7" coveredstatements="5" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="1"/>
       <file name="error-button.tsx" path="C:\Users\serge\OneDrive\Рабочий стол\Учеба Front-end\rsschool-react\React\src\components\ui\card\error-button\error-button.tsx">
         <metrics statements="7" coveredstatements="5" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="1"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="5" count="6" type="stmt"/>
+        <line num="7" count="6" type="stmt"/>
         <line num="8" count="0" type="stmt"/>
-        <line num="11" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="11" count="6" type="cond" truecount="1" falsecount="1"/>
         <line num="12" count="0" type="stmt"/>
-        <line num="14" count="1" type="stmt"/>
+        <line num="14" count="6" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.ui.detailed-card">
+      <metrics statements="10" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
+      <file name="detailed-card.tsx" path="C:\Users\serge\OneDrive\Рабочий стол\Учеба Front-end\rsschool-react\React\src\components\ui\detailed-card\detailed-card.tsx">
+        <metrics statements="10" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="51" count="0" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="89" count="1" type="stmt"/>
+        <line num="90" count="0" type="stmt"/>
       </file>
     </package>
     <package name="components.ui.loader">
-      <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="loader.tsx" path="C:\Users\serge\OneDrive\Рабочий стол\Учеба Front-end\rsschool-react\React\src\components\ui\loader\loader.tsx">
-        <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="5" count="0" type="stmt"/>
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.ui.not-found">
+      <metrics statements="5" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <file name="not-found.tsx" path="C:\Users\serge\OneDrive\Рабочий стол\Учеба Front-end\rsschool-react\React\src\components\ui\not-found\not-found.tsx">
+        <metrics statements="5" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
       </file>
     </package>
     <package name="components.ui.pagination">
-      <metrics statements="10" coveredstatements="1" conditionals="8" coveredconditionals="0" methods="5" coveredmethods="0"/>
+      <metrics statements="10" coveredstatements="6" conditionals="8" coveredconditionals="4" methods="5" coveredmethods="1"/>
       <file name="pagination.tsx" path="C:\Users\serge\OneDrive\Рабочий стол\Учеба Front-end\rsschool-react\React\src\components\ui\pagination\pagination.tsx">
-        <metrics statements="10" coveredstatements="1" conditionals="8" coveredconditionals="0" methods="5" coveredmethods="0"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="10" count="0" type="stmt"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="13" count="0" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
+        <metrics statements="10" coveredstatements="6" conditionals="8" coveredconditionals="4" methods="5" coveredmethods="1"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
         <line num="18" count="0" type="stmt"/>
         <line num="24" count="0" type="stmt"/>
         <line num="33" count="0" type="stmt"/>
@@ -131,59 +209,75 @@
       </file>
     </package>
     <package name="components.ui.result-field">
-      <metrics statements="18" coveredstatements="2" conditionals="8" coveredconditionals="0" methods="3" coveredmethods="0"/>
+      <metrics statements="18" coveredstatements="18" conditionals="8" coveredconditionals="8" methods="3" coveredmethods="3"/>
       <file name="result-field.tsx" path="C:\Users\serge\OneDrive\Рабочий стол\Учеба Front-end\rsschool-react\React\src\components\ui\result-field\result-field.tsx">
-        <metrics statements="18" coveredstatements="2" conditionals="8" coveredconditionals="0" methods="3" coveredmethods="0"/>
-        <line num="11" count="1" type="stmt"/>
-        <line num="13" count="1" type="stmt"/>
-        <line num="14" count="0" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
-        <line num="17" count="0" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="25" count="0" type="stmt"/>
-        <line num="27" count="0" type="stmt"/>
-        <line num="28" count="0" type="stmt"/>
-        <line num="30" count="0" type="cond" truecount="0" falsecount="4"/>
-        <line num="32" count="0" type="stmt"/>
-        <line num="33" count="0" type="stmt"/>
-        <line num="37" count="0" type="stmt"/>
-        <line num="40" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="41" count="0" type="stmt"/>
-        <line num="42" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="43" count="0" type="stmt"/>
-        <line num="54" count="0" type="stmt"/>
+        <metrics statements="18" coveredstatements="18" conditionals="8" coveredconditionals="8" methods="3" coveredmethods="3"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="14" count="6" type="stmt"/>
+        <line num="15" count="6" type="stmt"/>
+        <line num="17" count="6" type="stmt"/>
+        <line num="18" count="6" type="stmt"/>
+        <line num="25" count="6" type="stmt"/>
+        <line num="27" count="6" type="stmt"/>
+        <line num="28" count="3" type="stmt"/>
+        <line num="30" count="3" type="cond" truecount="4" falsecount="0"/>
+        <line num="32" count="3" type="stmt"/>
+        <line num="33" count="3" type="stmt"/>
+        <line num="37" count="3" type="stmt"/>
+        <line num="40" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="41" count="3" type="stmt"/>
+        <line num="42" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="43" count="2" type="stmt"/>
+        <line num="54" count="1" type="stmt"/>
       </file>
     </package>
     <package name="components.ui.search-field">
-      <metrics statements="15" coveredstatements="1" conditionals="6" coveredconditionals="0" methods="4" coveredmethods="0"/>
+      <metrics statements="15" coveredstatements="10" conditionals="6" coveredconditionals="6" methods="4" coveredmethods="1"/>
       <file name="search-field.tsx" path="C:\Users\serge\OneDrive\Рабочий стол\Учеба Front-end\rsschool-react\React\src\components\ui\search-field\search-field.tsx">
-        <metrics statements="15" coveredstatements="1" conditionals="6" coveredconditionals="0" methods="4" coveredmethods="0"/>
-        <line num="7" count="1" type="stmt"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="9" count="0" type="stmt"/>
-        <line num="10" count="0" type="stmt"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="14" count="0" type="stmt"/>
+        <metrics statements="15" coveredstatements="10" conditionals="6" coveredconditionals="6" methods="4" coveredmethods="1"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="14" count="2" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
+        <line num="18" count="2" type="stmt"/>
         <line num="19" count="0" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
-        <line num="24" count="0" type="stmt"/>
+        <line num="24" count="2" type="stmt"/>
         <line num="25" count="0" type="stmt"/>
-        <line num="28" count="0" type="stmt"/>
+        <line num="28" count="2" type="stmt"/>
       </file>
     </package>
     <package name="pages.app">
-      <metrics statements="5" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="App.tsx" path="C:\Users\serge\OneDrive\Рабочий стол\Учеба Front-end\rsschool-react\React\src\pages\app\App.tsx">
-        <metrics statements="5" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="17" count="1" type="stmt"/>
-        <line num="21" count="1" type="stmt"/>
-        <line num="23" count="0" type="stmt"/>
-        <line num="24" count="0" type="stmt"/>
-        <line num="29" count="0" type="stmt"/>
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="17" count="2" type="stmt"/>
+        <line num="21" count="2" type="stmt"/>
+        <line num="23" count="2" type="stmt"/>
+        <line num="24" count="2" type="stmt"/>
+        <line num="29" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="pages.error-page">
+      <metrics statements="4" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="error-page.tsx" path="C:\Users\serge\OneDrive\Рабочий стол\Учеба Front-end\rsschool-react\React\src\pages\error-page\error-page.tsx">
+        <metrics statements="4" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="router">
+      <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="AppRouter.tsx" path="C:\Users\serge\OneDrive\Рабочий стол\Учеба Front-end\rsschool-react\React\src\router\AppRouter.tsx">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
   </project>

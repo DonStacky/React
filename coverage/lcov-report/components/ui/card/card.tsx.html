@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">41.66% </span>
+                <span class="strong">61.53% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>5/12</span>
+                <span class='fraction'>8/13</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/4</span>
+                <span class='fraction'>3/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">45.45% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/11</span>
+                <span class='fraction'>8/12</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -136,17 +136,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -160,13 +160,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -200,13 +200,13 @@ export const Card = ({ id, name, description, image, page }: CardProps) =&gt; {
   const handleClick = <span class="fstat-no" title="function not covered" >(e</span>vent: React.MouseEvent&lt;HTMLDivElement&gt;) =&gt; {
     const target = <span class="cstat-no" title="statement not covered" >event.target as HTMLElement;</span>
 <span class="cstat-no" title="statement not covered" >    if (target.tagName === 'BUTTON') <span class="cstat-no" title="statement not covered" >return;</span></span>
-&nbsp;
+<span class="cstat-no" title="statement not covered" >    console.log('fire click');</span>
 <span class="cstat-no" title="statement not covered" >    navigate(`/page/${page}/details/${id}`);</span>
   };
 &nbsp;
   return (
     &lt;ErrorBoundary page={page}&gt;
-      &lt;div className="card" onClick={handleClick}&gt;
+      &lt;div className="card" onClick={handleClick} data-testid="card"&gt;
         &lt;div className="card__imgbox"&gt;
           &lt;img className="card__img" src={image} alt={name} /&gt;
         &lt;/div&gt;
@@ -218,13 +218,13 @@ export const Card = ({ id, name, description, image, page }: CardProps) =&gt; {
   );
 };
 &nbsp;
-export const Cards = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
-  const { pageItems, currentPage } = <span class="cstat-no" title="statement not covered" >useContext(PageDataContext);</span>
+export const Cards = () =&gt; {
+  const { pageItems, currentPage } = useContext(PageDataContext);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
-    &lt;div className="result-field"&gt;
-      {pageItems.map(<span class="fstat-no" title="function not covered" >(i</span>tem) =&gt; (
-<span class="cstat-no" title="statement not covered" >        &lt;Card</span>
+  return (
+    &lt;div className="result-field" data-testid="card-list"&gt;
+      {pageItems.map((item) =&gt; (
+        &lt;Card
           key={item.id}
           id={item.id}
           name={item.name}
@@ -244,7 +244,7 @@ export const Cards = <span class="fstat-no" title="function not covered" >()</sp
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-11-08T08:56:58.224Z
+                at 2023-11-09T17:12:10.815Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

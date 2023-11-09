@@ -36,6 +36,7 @@ export async function getPageData(
     }
   }
 
+  console.log({ pageItems, lastPage: pagesQty, currentPage, itemQty });
   return { pageItems, lastPage: pagesQty, currentPage, itemQty };
 }
 

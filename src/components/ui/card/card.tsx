@@ -19,13 +19,13 @@ export const Card = ({ id, name, description, image, page }: CardProps) => {
   const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
     const target = event.target as HTMLElement;
     if (target.tagName === 'BUTTON') return;
-
+    console.log('fire click');
     navigate(`/page/${page}/details/${id}`);
   };
 
   return (
     <ErrorBoundary page={page}>
-      <div className="card" onClick={handleClick}>
+      <div className="card" onClick={handleClick} data-testid="card">
         <div className="card__imgbox">
           <img className="card__img" src={image} alt={name} />
         </div>
@@ -41,7 +41,7 @@ export const Cards = () => {
   const { pageItems, currentPage } = useContext(PageDataContext);
 
   return (
-    <div className="result-field">
+    <div className="result-field" data-testid="card-list">
       {pageItems.map((item) => (
         <Card
           key={item.id}
