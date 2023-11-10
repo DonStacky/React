@@ -6,7 +6,7 @@ import { detailsLoader } from '../components/ui/detailed-card/detailed-card';
 import { Route } from 'react-router-dom';
 
 export default (
-  <Route path="/" element={<App />} errorElement={<ErrorPage />}>
+  <Route path="/" element={<App />}>
     <Route index element={<ResultField />} />
     <Route path="page/:pageNumber" element={<ResultField />}>
       <Route
@@ -15,5 +15,6 @@ export default (
         loader={detailsLoader}
       />
     </Route>
+    <Route path="*" element={<ErrorPage />} />
   </Route>
 );

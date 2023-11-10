@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">10% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>10/10</span>
+                <span class='fraction'>1/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/8</span>
+                <span class='fraction'>0/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>5/5</span>
+                <span class='fraction'>0/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">10% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>10/10</span>
+                <span class='fraction'>1/10</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -118,36 +118,36 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -163,23 +163,23 @@ import { Button } from '../button/button';
 import './pagination.scss';
 import { PageDataContext } from '../result-field/result-field';
 &nbsp;
-export const Pagination = () =&gt; {
-  const navigate = useNavigate();
-  const { currentPage, lastPage } = useContext(PageDataContext);
-  const { searchParams } = useContext(SearchContext);
-  const { searchTerm, itemQty } = searchParams;
+export const Pagination = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+  const navigate = <span class="cstat-no" title="statement not covered" >useNavigate();</span>
+  const { currentPage, lastPage } = <span class="cstat-no" title="statement not covered" >useContext(PageDataContext);</span>
+  const { searchParams } = <span class="cstat-no" title="statement not covered" >useContext(SearchContext);</span>
+  const { searchTerm, itemQty } = <span class="cstat-no" title="statement not covered" >searchParams;</span>
 &nbsp;
-  return (
+<span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;div className="pagination-box"&gt;
       &lt;Button
-        onClick={() =&gt; navigate(getURL(1, searchTerm, itemQty))}
-        className={currentPage === 1 ? 'button--disable' : <span class="branch-1 cbranch-no" title="branch not covered" >''}</span>
+        onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >navigate(getURL(1, searchTerm, itemQty))}</span>
+        className={currentPage === 1 ? 'button--disable' : ''}
       &gt;
         &amp;lt;&amp;lt;
       &lt;/Button&gt;
       &lt;Button
-        onClick={() =&gt; navigate(getURL(currentPage - 1, searchTerm, itemQty))}
-        className={currentPage === 1 ? 'button--disable' : <span class="branch-1 cbranch-no" title="branch not covered" >''}</span>
+        onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >navigate(getURL(currentPage - 1, searchTerm, itemQty))}</span>
+        className={currentPage === 1 ? 'button--disable' : ''}
       &gt;
         &amp;lt;
       &lt;/Button&gt;
@@ -187,14 +187,14 @@ export const Pagination = () =&gt; {
         {`${currentPage} of ${lastPage}`}
       &lt;/Button&gt;
       &lt;Button
-        onClick={() =&gt; navigate(getURL(currentPage + 1, searchTerm, itemQty))}
-        className={currentPage === lastPage ? <span class="branch-0 cbranch-no" title="branch not covered" >'button--disable' </span>: ''}
+        onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >navigate(getURL(currentPage + 1, searchTerm, itemQty))}</span>
+        className={currentPage === lastPage ? 'button--disable' : ''}
       &gt;
         &amp;gt;
       &lt;/Button&gt;
       &lt;Button
-        onClick={() =&gt; navigate(getURL(lastPage, searchTerm, itemQty))}
-        className={currentPage === lastPage ? <span class="branch-0 cbranch-no" title="branch not covered" >'button--disable' </span>: ''}
+        onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >navigate(getURL(lastPage, searchTerm, itemQty))}</span>
+        className={currentPage === lastPage ? 'button--disable' : ''}
       &gt;
         &amp;gt;&amp;gt;
       &lt;/Button&gt;
@@ -208,7 +208,7 @@ export const Pagination = () =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-11-10T12:44:20.836Z
+                at 2023-11-10T18:18:04.742Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">93.75% </span>
+                <span class="strong">62.5% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>15/16</span>
+                <span class='fraction'>10/16</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/6</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
+                <span class="strong">25% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/4</span>
+                <span class='fraction'>1/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">93.75% </span>
+                <span class="strong">62.5% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>15/16</span>
+                <span class='fraction'>10/16</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -124,28 +124,28 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -184,15 +184,15 @@ export const SearchField = () =&gt; {
   const [currentTerm, setCurrentTerm] = useState(searchTerm);
   const [currentItemQty, setCurrentItemQty] = useState(itemQty);
 &nbsp;
-  const handleInputChange = (event: React.ChangeEvent&lt;HTMLInputElement&gt;) =&gt; {
-    setCurrentTerm(event.target.value.trim());
+  const handleInputChange = <span class="fstat-no" title="function not covered" >(e</span>vent: React.ChangeEvent&lt;HTMLInputElement&gt;) =&gt; {
+<span class="cstat-no" title="statement not covered" >    setCurrentTerm(event.target.value.trim());</span>
   };
 &nbsp;
-  const handleSubmit = (event: React.FormEvent&lt;HTMLFormElement&gt;) =&gt; {
-    event.preventDefault();
-    setSearchParams({ searchTerm: currentTerm, itemQty: currentItemQty });
-    navigate(getURL(1, currentTerm, currentItemQty));
-    localStorage.setItem('queryDataRSG', `${currentTerm}&amp;${currentItemQty}`);
+  const handleSubmit = <span class="fstat-no" title="function not covered" >(e</span>vent: React.FormEvent&lt;HTMLFormElement&gt;) =&gt; {
+<span class="cstat-no" title="statement not covered" >    event.preventDefault();</span>
+<span class="cstat-no" title="statement not covered" >    setSearchParams({ searchTerm: currentTerm, itemQty: currentItemQty });</span>
+<span class="cstat-no" title="statement not covered" >    navigate(getURL(1, currentTerm, currentItemQty));</span>
+<span class="cstat-no" title="statement not covered" >    localStorage.setItem('queryDataRSG', `${currentTerm}&amp;${currentItemQty}`);</span>
   };
 &nbsp;
   const handleChangeItemQty = <span class="fstat-no" title="function not covered" >(e</span>vent: React.ChangeEvent&lt;HTMLInputElement&gt;) =&gt; {
@@ -214,8 +214,8 @@ export const SearchField = () =&gt; {
           type="number"
           min="2"
           max="20"
-          placeholder={`${currentItemQty || <span class="branch-1 cbranch-no" title="branch not covered" >8}</span> items`}
-          value={currentItemQty || <span class="branch-1 cbranch-no" title="branch not covered" >''}</span>
+          placeholder={`${currentItemQty || 8} items`}
+          value={currentItemQty || ''}
           onChange={handleChangeItemQty}
         /&gt;
       &lt;/div&gt;
@@ -232,7 +232,7 @@ export const SearchField = () =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-11-10T15:17:33.066Z
+                at 2023-11-10T18:18:04.742Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
