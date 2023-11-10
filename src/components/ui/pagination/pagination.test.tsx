@@ -5,17 +5,13 @@ import { Router } from 'react-router-dom';
 import { SearchContext } from '../../../pages/app/App';
 import { createMemoryHistory } from 'history';
 import userEvent from '@testing-library/user-event';
+import { searchContextValue } from '../../../shared/test-data';
 
 const pageData = {
   currentPage: 1,
   itemQty: 1,
   lastPage: 125,
   pageItems: [],
-};
-
-const searchContextValue = {
-  searchParams: { searchTerm: '', itemQty: 8 },
-  setSearchParams: () => {},
 };
 
 describe('Tests for the Pagination component', () => {

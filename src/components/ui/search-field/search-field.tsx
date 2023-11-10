@@ -19,6 +19,7 @@ export const SearchField = () => {
     event.preventDefault();
     setSearchParams({ searchTerm: currentTerm, itemQty: currentItemQty });
     navigate(getURL(1, currentTerm, currentItemQty));
+    localStorage.setItem('queryDataRSG', `${currentTerm}&${currentItemQty}`);
   };
 
   const handleChangeItemQty = (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -5,6 +5,7 @@ import { SearchContext } from '../../../pages/app/App';
 import { getPageData } from '../../api/get-page-data';
 import { PageDataContext, ResultField } from '../result-field/result-field';
 import { Cards } from './card';
+import { searchContextValue } from '../../../shared/test-data';
 
 const pageDataWithCard = {
   pageItems: [
@@ -43,11 +44,6 @@ const pageDataNoCard = {
   currentPage: 1,
   lastPage: 1,
   itemQty: 0,
-};
-
-const searchContextValue = {
-  searchParams: { searchTerm: '', itemQty: 8 },
-  setSearchParams: () => {},
 };
 
 jest.mock('../../api/get-page-data');
