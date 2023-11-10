@@ -17,6 +17,7 @@ type LoaderData = {
 
 export function DetailedCard() {
   const { details } = useLoaderData() as LoaderData;
+  console.log(details);
   const navigate = useNavigate();
 
   return (

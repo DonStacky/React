@@ -1,5 +1,6 @@
 import '@testing-library/jest-dom';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import {
   MemoryRouter,
   BrowserRouter as Router,
@@ -7,6 +8,7 @@ import {
 } from 'react-router-dom';
 import AppRouter from '../../../router/AppRouter';
 import { getPageData } from '../../api/get-page-data';
+import { detailsLoader } from '../detailed-card/detailed-card';
 import { Card } from './card';
 
 const pageData = {
@@ -18,15 +20,56 @@ const pageData = {
       id: 1,
       name: 'Bulbasaur',
       description:
-        "This Pokémon's Speed is doubled during strong sunl…t.\n\nThis bonus does not count as a stat modifier.",
+        "This Pokémon's Speed is doubled during strong sunl…t. This bonus does not count as a stat modifier.",
       image:
         'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png',
     },
   ],
 };
 
+const detailedPageData = {
+  abilities: [
+    [
+      'overgrow',
+      'When this Pokémon has 1/3 or less of its HP remain…s-type moves inflict 1.5× as much regular damage.',
+    ],
+    [
+      'chlorophyll',
+      "This Pokémon's Speed is doubled during strong sunl…t.\n\nThis bonus does not count as a stat modifier.",
+    ],
+  ],
+  evolutionData: [
+    {
+      name: 'bulbasaur',
+      image:
+        'https://raw.githubusercontent.com/PokeAPI/sprites/…ster/sprites/pokemon/other/official-artwork/1.png',
+    },
+    {
+      name: 'ivysaur',
+      image:
+        'https://raw.githubusercontent.com/PokeAPI/sprites/…ster/sprites/pokemon/other/official-artwork/2.png',
+    },
+    {
+      name: 'venusaur',
+      image:
+        'https://raw.githubusercontent.com/PokeAPI/sprites/…ster/sprites/pokemon/other/official-artwork/3.png',
+    },
+  ],
+  height: '0.7 m',
+  image:
+    'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png',
+  name: 'Bulbasaur',
+  types: 'grass, poison',
+  weight: '6.9 kg',
+};
+
 jest.mock('../../api/get-page-data');
 (getPageData as jest.Mock).mockImplementation(() => Promise.resolve(pageData));
+
+jest.mock('../detailed-card/detailed-card');
+(detailsLoader as jest.Mock).mockImplementation(() =>
+  Promise.resolve(detailedPageData)
+);
 
 describe('Tests for the Card component', () => {
   test('Ensure that the card component renders the relevant card data', () => {
@@ -55,35 +98,37 @@ describe('Tests for the Card component', () => {
 
   test('Validate that clicking on a card opens a detailed card component', async () => {
     render(
-      <MemoryRouter initialEntries={['/page/1']}>
+      <MemoryRouter initialEntries={['/']}>
         <Routes>{AppRouter}</Routes>
       </MemoryRouter>
     );
-    // getPageData.mockReturnValue(Promise.resolve(pageData));
 
     expect(screen.queryByTestId('detailed-card')).toBeNull();
-    // expect(screen.queryByTestId('detailed-card')).toBeInTheDocument();
-    await screen.findByTestId('card');
 
-    expect(screen.queryByTestId('card')).toBeInTheDocument();
-    // const card = screen.getByTestId('card');
-    // fireEvent.click(card);
+    const card = await screen.findByText('Bulbasaur');
+    expect(card).toBeInTheDocument();
+    const link = screen.getByRole('link');
+    await userEvent.click(link);
+
+    // const detailedCard = await screen.findByTestId('detailed-card');
+    // expect(detailedCard).toBeInTheDocument();
+    // screen.debug(detailedCard);
   });
 
   test('Check that clicking triggers an additional API call to fetch detailed information', async () => {
     render(
-      <MemoryRouter initialEntries={['/page/1']}>
+      <MemoryRouter initialEntries={['/']}>
         <Routes>{AppRouter}</Routes>
       </MemoryRouter>
     );
-    // getPageData.mockReturnValue(Promise.resolve(pageData));
 
-    expect(screen.queryByTestId('detailed-card')).toBeNull();
-    // expect(screen.queryByTestId('detailed-card')).toBeInTheDocument();
-    await waitFor(() => {
-      expect(screen.queryByTestId('card')).toBeInTheDocument();
-    });
-    // const card = screen.getByTestId('card');
-    // fireEvent.click(card);
+    expect(getPageData).toHaveBeenCalledTimes(1);
+
+    const link = await screen.findByRole('link');
+    await userEvent.click(link);
+
+    expect(getPageData).toHaveBeenCalledTimes(2);
+
+    // expect(detailsLoader).toHaveBeenCalledTimes(1);
   });
 });

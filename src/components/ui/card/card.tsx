@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, Link } from 'react-router-dom';
 import { ErrorBoundary } from '../../model/error-boundary';
 import { PageDataContext } from '../result-field/result-field';
 import './card.scss';
@@ -14,23 +14,25 @@ type CardProps = {
 };
 
 export const Card = ({ id, name, description, image, page }: CardProps) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    const target = event.target as HTMLElement;
-    if (target.tagName === 'BUTTON') return;
-    console.log('fire click');
-    navigate(`/page/${page}/details/${id}`);
-  };
+  // const handleClick = (/* event: React.MouseEvent<HTMLDivElement> */) => {
+  //   // const target = event.target as HTMLElement;
+  //   // if (target.tagName === 'BUTTON') return;
+  //   console.log(`/page/${page}/details/${id}`);
+  //   navigate(`/page/${page}/details/${id}`);
+  // };
 
   return (
     <ErrorBoundary page={page}>
-      <div className="card" onClick={handleClick} data-testid="card">
-        <div className="card__imgbox">
-          <img className="card__img" src={image} alt={name} />
-        </div>
-        <h3 className="card__title">{name}</h3>
-        <p className="card__text">{description}</p>
+      <div className="card" data-testid="card">
+        <Link to={`/page/${page}/details/${id}`}>
+          <div className="card__imgbox">
+            <img className="card__img" src={image} alt={name} />
+          </div>
+          <h3 className="card__title">{name}</h3>
+          <p className="card__text">{description}</p>
+        </Link>
         <ErrorButton />
       </div>
     </ErrorBoundary>
