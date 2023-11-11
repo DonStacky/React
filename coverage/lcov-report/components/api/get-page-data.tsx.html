@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">41.93% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/31</span>
+                <span class='fraction'>13/31</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">18.18% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/11</span>
+                <span class='fraction'>2/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>2/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">41.93% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/31</span>
+                <span class='fraction'>13/31</span>
             </div>
         
             
@@ -186,34 +186,34 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { PokemonData, ResultData } from '../../shared/types';
 import { BASE_URL } from './constants';
@@ -257,39 +257,39 @@ export async function <span class="fstat-no" title="function not covered" >getPa
 <span class="cstat-no" title="statement not covered" >  return { pageItems, lastPage: pagesQty, currentPage, itemQty };</span>
 }
 &nbsp;
-export async function <span class="fstat-no" title="function not covered" >getPokemonsData(</span>
+export async function getPokemonsData(
   results: ResultData[],
   pokemonNumber: number
 ) {
   const name =
-<span class="cstat-no" title="statement not covered" >    results[pokemonNumber].name[0].toUpperCase() +</span>
+    results[pokemonNumber].name[0].toUpperCase() +
     results[pokemonNumber].name.slice(1);
-  const details = <span class="cstat-no" title="statement not covered" >results[pokemonNumber].url;</span>
-  const response = <span class="cstat-no" title="statement not covered" >await fetch(details);</span>
-  const json = <span class="cstat-no" title="statement not covered" >await response.json();</span>
+  const details = results[pokemonNumber].url;
+  const response = await fetch(details);
+  const json = await response.json();
 &nbsp;
   const abilityURL: string =
-<span class="cstat-no" title="statement not covered" >    json?.abilities[1]?.ability.url || json?.abilities[0].ability.url;</span>
+    json?.abilities[1]?.ability.url || <span class="branch-1 cbranch-no" title="branch not covered" >json?.abilities[0].ability.url;</span>
 &nbsp;
-  const abilityResp = <span class="cstat-no" title="statement not covered" >await fetch(abilityURL);</span>
-  const abilityJson = <span class="cstat-no" title="statement not covered" >await abilityResp.json();</span>
+  const abilityResp = await fetch(abilityURL);
+  const abilityJson = await abilityResp.json();
   const abilityDesc: string =
-<span class="cstat-no" title="statement not covered" >    abilityJson.effect_entries.filter(</span>
-<span class="fstat-no" title="function not covered" >      (i</span>tem: { language: { name: string } }) =&gt; <span class="cstat-no" title="statement not covered" >item.language.name === 'en'</span>
-    )[0]?.effect || `He uses ${abilityJson.name}`;
+    abilityJson.effect_entries.filter(
+      (item: { language: { name: string } }) =&gt; item.language.name === 'en'
+    )[0]?.effect || <span class="branch-1 cbranch-no" title="branch not covered" >`He uses ${abilityJson.name}`;</span>
 &nbsp;
-  const imageURL: string = <span class="cstat-no" title="statement not covered" >json.sprites.other['official-artwork'].front_default;</span>
+  const imageURL: string = json.sprites.other['official-artwork'].front_default;
 &nbsp;
-  const id: number = <span class="cstat-no" title="statement not covered" >json.id;</span>
+  const id: number = json.id;
 &nbsp;
-  const pageItem: PokemonData = <span class="cstat-no" title="statement not covered" >{</span>
+  const pageItem: PokemonData = {
     id,
     name,
     description: abilityDesc,
     image: imageURL,
   };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return pageItem;</span>
+  return pageItem;
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -298,7 +298,7 @@ export async function <span class="fstat-no" title="function not covered" >getPo
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-11-10T18:18:04.742Z
+                at 2023-11-11T08:10:39.925Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

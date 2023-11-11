@@ -1,92 +1,77 @@
-import { Suspense } from 'react';
-import {
-  Await,
-  LoaderFunctionArgs,
-  defer,
-  useLoaderData,
-  useNavigate,
-} from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { DetailsData } from '../../../shared/types';
 import { getPokemonDetails } from '../../api/get-pokemon-details';
 import { Loader } from '../loader/loader';
 import './detailed-card.scss';
 
-type LoaderData = {
-  details: DetailsData;
-};
-
 export function DetailedCard() {
-  const { details } = useLoaderData() as LoaderData;
-  console.log(details);
+  const [details, setDetails] = useState<DetailsData>({} as DetailsData);
+  const [isLoading, setIsLoading] = useState(true);
+  const { detailsID: id } = useParams();
   const navigate = useNavigate();
 
-  return (
-    <>
-      <div className="details__overlay" onClick={() => navigate(-1)}></div>
-      <div className="details" data-testid="detailed-card">
-        <Suspense fallback={<Loader />}>
-          <Await resolve={details}>
-            {(resolvedDetails: DetailsData) => (
-              <>
-                <div onClick={() => navigate(-1)} className="details__btn-box">
-                  <button className="details__button">x</button>
-                </div>
-                <h2 className="details__name">{resolvedDetails.name}</h2>
-                <img
-                  src={resolvedDetails.image}
-                  alt=""
-                  className="details__img"
-                />
-                <div className="details__table">
-                  <div className="details__column">
-                    <h3 className="details__title">Height</h3>
-                    <p className="details__text">{resolvedDetails.height}</p>
-                    <h3 className="details__title">Weight</h3>
-                    <p className="details__text">{resolvedDetails.weight}</p>
-                    <h3 className="details__title">Types</h3>
-                    <p className="details__text">{resolvedDetails.types}</p>
-                  </div>
-                  <div className="details__column">
-                    <h3 className="details__title">Ability</h3>
-                    {resolvedDetails.abilities.map(([name, text], index) => {
-                      return (
-                        <div key={index} className="details__row">
-                          <p className="details__text">{name}</p>
-                          <span>{text}</span>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-                <h3 className="details__evo-title">Stage of evolution</h3>
-                <div className="details__evolution">
-                  {resolvedDetails.evolutionData.map(
-                    ({ name, image }, index) => {
-                      return (
-                        <div
-                          key={index}
-                          className="details__evo-imagebox"
-                          title={name}
-                        >
-                          <img
-                            src={image}
-                            alt={name}
-                            className="details__evo-image"
-                          />
-                        </div>
-                      );
-                    }
-                  )}
-                </div>
-              </>
-            )}
-          </Await>
-        </Suspense>
-      </div>
-    </>
-  );
-}
+  useEffect(() => {
+    setIsLoading(true);
 
-export const detailsLoader = async ({ params }: LoaderFunctionArgs<string>) => {
-  return defer({ details: getPokemonDetails(Number(params.detailsID)) });
-};
+    getPokemonDetails(Number(id)).then((result) => {
+      setDetails(result);
+      setIsLoading(false);
+    });
+  }, [id]);
+
+  if (isLoading) {
+    return (
+      <>
+        <div className="details__overlay" onClick={() => navigate(-1)}></div>
+        <div className="details" data-testid="detailed-card">
+          <Loader />
+        </div>
+      </>
+    );
+  } else if (details) {
+    return (
+      <>
+        <div className="details__overlay" onClick={() => navigate(-1)}></div>
+        <div className="details" data-testid="detailed-card">
+          <div onClick={() => navigate(-1)} className="details__btn-box">
+            <button className="details__button">x</button>
+          </div>
+          <h2 className="details__name">{details.name}</h2>
+          <img src={details.image} alt="" className="details__img" />
+          <div className="details__table">
+            <div className="details__column">
+              <h3 className="details__title">Height</h3>
+              <p className="details__text">{details.height}</p>
+              <h3 className="details__title">Weight</h3>
+              <p className="details__text">{details.weight}</p>
+              <h3 className="details__title">Types</h3>
+              <p className="details__text">{details.types}</p>
+            </div>
+            <div className="details__column">
+              <h3 className="details__title">Ability</h3>
+              {details.abilities.map(([name, text], index) => {
+                return (
+                  <div key={index} className="details__row">
+                    <p className="details__text">{name}</p>
+                    <span>{text}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          <h3 className="details__evo-title">Stage of evolution</h3>
+          <div className="details__evolution">
+            {details.evolutionData.map(({ name, image }, index) => {
+              return (
+                <div key={index} className="details__evo-imagebox" title={name}>
+                  <img src={image} alt={name} className="details__evo-image" />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </>
+    );
+  }
+}

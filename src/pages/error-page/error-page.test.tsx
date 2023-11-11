@@ -15,6 +15,5 @@ describe('Tests for the 404 Page component', () => {
 
     const errorMessage = await screen.findByText('The page not found');
     expect(errorMessage).toBeInTheDocument();
-    screen.debug();
   });
 });
