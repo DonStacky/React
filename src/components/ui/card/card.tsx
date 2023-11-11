@@ -14,15 +14,6 @@ type CardProps = {
 };
 
 export const Card = ({ id, name, description, image, page }: CardProps) => {
-  // const navigate = useNavigate();
-
-  // const handleClick = (/* event: React.MouseEvent<HTMLDivElement> */) => {
-  //   // const target = event.target as HTMLElement;
-  //   // if (target.tagName === 'BUTTON') return;
-  //   console.log(`/page/${page}/details/${id}`);
-  //   navigate(`/page/${page}/details/${id}`);
-  // };
-
   return (
     <ErrorBoundary page={page}>
       <div className="card" data-testid="card">

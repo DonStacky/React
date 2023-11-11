@@ -50,6 +50,18 @@ describe('Tests for the Detailed Card component', () => {
     expect(height).toBeInTheDocument();
     expect(weight).toBeInTheDocument();
     expect(img).toBeInTheDocument();
+
+    const imgSrc = img.getAttribute('src');
+    const heightInfo = screen.getByText('0.7 m');
+    const weightInfo = screen.getByText('6.9 kg');
+    const typesInfo = screen.getByText('grass, poison');
+
+    expect(imgSrc).toEqual(
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png'
+    );
+    expect(heightInfo).toBeInTheDocument();
+    expect(weightInfo).toBeInTheDocument();
+    expect(typesInfo).toBeInTheDocument();
   });
 
   it('Ensure that clicking the close button hides the component', async () => {
