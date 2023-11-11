@@ -7,3 +7,4 @@ pre-commit
 husky.sh
 netlify.tolm
 coverage
+pre-push
