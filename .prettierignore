@@ -6,3 +6,5 @@ pre-commit
 .gitignore
 husky.sh
 netlify.tolm
+coverage
+pre-push

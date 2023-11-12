@@ -39,12 +39,14 @@ export async function getPageData(
   return { pageItems, lastPage: pagesQty, currentPage, itemQty };
 }
 
-async function getPokemonsData(results: ResultData[], pokemonNumber: number) {
+export async function getPokemonsData(
+  results: ResultData[],
+  pokemonNumber: number
+) {
   const name =
     results[pokemonNumber].name[0].toUpperCase() +
     results[pokemonNumber].name.slice(1);
   const details = results[pokemonNumber].url;
-
   const response = await fetch(details);
   const json = await response.json();
 
@@ -52,6 +54,7 @@ async function getPokemonsData(results: ResultData[], pokemonNumber: number) {
     json?.abilities[1]?.ability.url || json?.abilities[0].ability.url;
   const abilityResp = await fetch(abilityURL);
   const abilityJson = await abilityResp.json();
+
   const abilityDesc: string =
     abilityJson.effect_entries.filter(
       (item: { language: { name: string } }) => item.language.name === 'en'

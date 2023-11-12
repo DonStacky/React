@@ -1,15 +1,18 @@
-import { useEffect, useState } from 'react';
-import { Outlet, useParams } from 'react-router-dom';
+import { createContext, useContext, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { SearchContext } from '../../../pages/app/App';
 import { PageData } from '../../../shared/types';
 import { getPageData } from '../../api/get-page-data';
-import { useGetSearchParams } from '../../model/get-search-params';
-import { Card } from '../card/card';
+import { CardList } from '../card/card-list';
 import { Loader } from '../loader/loader';
 import { Pagination } from '../pagination/pagination';
 import './result-field.scss';
 
+export const PageDataContext = createContext<PageData>({} as PageData);
+
 export const ResultField = () => {
-  const { searchTerm, itemQty } = useGetSearchParams();
+  const { searchParams } = useContext(SearchContext);
+  const { searchTerm, itemQty } = searchParams;
 
   const [isLoading, setIsLoading] = useState(true);
   const [pageData, setPageData] = useState<PageData>({
@@ -40,23 +43,10 @@ export const ResultField = () => {
     return (
       <>
         <div className="container">
-          <div className="result-field">
-            {pageData.pageItems.map((item) => (
-              <Card
-                key={item.id}
-                id={item.id}
-                name={item.name}
-                description={item.description}
-                image={item.image}
-                page={pageData.currentPage}
-              />
-            ))}
-            <Outlet />
-          </div>
-          <Pagination
-            currentPage={pageData.currentPage}
-            lastPage={pageData.lastPage}
-          ></Pagination>
+          <PageDataContext.Provider value={pageData}>
+            <CardList />
+            <Pagination />
+          </PageDataContext.Provider>
         </div>
       </>
     );

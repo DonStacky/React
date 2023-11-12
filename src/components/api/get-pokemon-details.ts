@@ -50,7 +50,6 @@ export async function getPokemonDetails(id: number) {
     weight,
     evolutionData,
   };
-
   return details;
 }
 

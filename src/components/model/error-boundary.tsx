@@ -1,6 +1,6 @@
 import { Component, ReactNode } from 'react';
 import { Card } from '../ui/card/card';
-import Pepe from 'image/pepe.webp';
+import Pepe from '../../assets/image/pepe.webp';
 
 const ERROR_MESSAGE =
   'On behalf of clowns-developers apologize for the inconvenience!\n';
