@@ -24,7 +24,6 @@ export const SearchField = () => {
 
   const handleChangeItemQty = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCurrentItemQty(Number(event.target.value));
-    console.log(event);
   };
 
   return (
