@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState, createContext } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { SearchContext } from '../../../pages/app/App';
 import { PageData } from '../../../shared/types';
 import { getPageData } from '../../api/get-page-data';
-import { Cards } from '../card/card';
+import { CardList } from '../card/card-list';
 import { Loader } from '../loader/loader';
 import { Pagination } from '../pagination/pagination';
 import './result-field.scss';
@@ -44,8 +44,8 @@ export const ResultField = () => {
       <>
         <div className="container">
           <PageDataContext.Provider value={pageData}>
-            <Cards></Cards>
-            <Pagination></Pagination>
+            <CardList />
+            <Pagination />
           </PageDataContext.Provider>
         </div>
       </>

@@ -1,9 +1,10 @@
+import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { App, SearchContext } from '../../../pages/app/App';
 import { searchContextValue } from '../../../shared/test-data';
 import { SearchField } from './search-field';
-import userEvent from '@testing-library/user-event';
 
 Object.defineProperty(window, 'localStorage', {
   value: {
@@ -44,5 +45,9 @@ describe('Tests for the Search component', () => {
 
     expect(window.localStorage.getItem).toHaveBeenCalledTimes(1);
     expect(window.localStorage.getItem).toHaveBeenCalledWith('queryDataRSG');
+
+    const textbox = await screen.findByRole('textbox');
+    expect(textbox).toBeInTheDocument();
+    expect(textbox).toHaveValue('test');
   });
 });

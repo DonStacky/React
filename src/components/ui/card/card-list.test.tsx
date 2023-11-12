@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { SearchContext } from '../../../pages/app/App';
 import { getPageData } from '../../api/get-page-data';
 import { PageDataContext, ResultField } from '../result-field/result-field';
-import { Cards } from './card';
+import { CardList } from './card-list';
 import { searchContextValue } from '../../../shared/test-data';
 
 const pageDataWithCard = {
@@ -56,7 +56,7 @@ describe('Tests for the Card List component', () => {
     render(
       <Router>
         <PageDataContext.Provider value={pageDataWithCard}>
-          <Cards />
+          <CardList />
         </PageDataContext.Provider>
       </Router>
     );
@@ -83,8 +83,8 @@ describe('Tests for the Card List component', () => {
       'Nothing was found for your request...'
     );
 
-    expect(cardList).toBeNull();
-    expect(cards).toBeNull();
+    expect(cardList).not.toBeInTheDocument();
+    expect(cards).not.toBeInTheDocument();
     expect(errorMessage).toBeInTheDocument();
   });
 });

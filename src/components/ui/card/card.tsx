@@ -1,7 +1,5 @@
-import { useContext } from 'react';
-import { Outlet, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ErrorBoundary } from '../../model/error-boundary';
-import { PageDataContext } from '../result-field/result-field';
 import './card.scss';
 import { ErrorButton } from './error-button/error-button';
 
@@ -27,25 +25,5 @@ export const Card = ({ id, name, description, image, page }: CardProps) => {
         <ErrorButton />
       </div>
     </ErrorBoundary>
-  );
-};
-
-export const Cards = () => {
-  const { pageItems, currentPage } = useContext(PageDataContext);
-
-  return (
-    <div className="result-field" data-testid="card-list">
-      {pageItems.map((item) => (
-        <Card
-          key={item.id}
-          id={item.id}
-          name={item.name}
-          description={item.description}
-          image={item.image}
-          page={currentPage}
-        />
-      ))}
-      <Outlet />
-    </div>
   );
 };
