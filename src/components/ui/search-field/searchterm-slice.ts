@@ -1,11 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+const localSearchTerm = localStorage.getItem('searchTermRSG');
+
 interface searchTermState {
   value: string;
 }
 
 const initialState: searchTermState = {
-  value: '',
+  value: localSearchTerm ?? '',
 };
 
 export const searchTermSlice = createSlice({

@@ -4,21 +4,27 @@ import { DetailsData } from '../../../shared/types';
 import { getPokemonDetails } from '../../api/get-pokemon-details';
 import { Loader } from '../loader/loader';
 import './detailed-card.scss';
+import { useAppDispatch, useAppSelector } from '../../../pages/app/hook';
+import { toggleDetailedLoader } from './detailed-loader-slice';
 
 export function DetailedCard() {
   const [details, setDetails] = useState<DetailsData>({} as DetailsData);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
+  const isLoading = useAppSelector((state) => state.isDetailedLoading.value);
+  const dispatch = useAppDispatch();
   const { detailsID: id } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
-    setIsLoading(true);
+    // setIsLoading(true);
+    dispatch(toggleDetailedLoader(true));
 
     getPokemonDetails(Number(id)).then((result) => {
       setDetails(result);
-      setIsLoading(false);
+      dispatch(toggleDetailedLoader(false));
+      // setIsLoading(false);
     });
-  }, [id]);
+  }, [id, dispatch]);
 
   if (isLoading) {
     return (

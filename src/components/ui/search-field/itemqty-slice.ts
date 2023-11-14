@@ -1,11 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+const localItemQty = Number(localStorage.getItem('itemQtyRSG'));
+
 interface itemQtyState {
   value: number;
 }
 
 const initialState: itemQtyState = {
-  value: 8,
+  value: localItemQty || 8,
 };
 
 export const itemQtySlice = createSlice({

@@ -36,8 +36,6 @@ export const ResultField = () => {
         setIsLoading(false);
       }
     );
-
-    localStorage.setItem('queryDataRSG', `${searchTerm}&${itemQty}`);
   }, [pageNumber, searchTerm, itemQty]);
 
   if (isLoading) {
