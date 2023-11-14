@@ -1,18 +1,21 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, /* useContext, */ useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { SearchContext } from '../../../pages/app/App';
+// import { SearchContext } from '../../../pages/app/App';
 import { PageData } from '../../../shared/types';
 import { getPageData } from '../../api/get-page-data';
 import { CardList } from '../card/card-list';
 import { Loader } from '../loader/loader';
 import { Pagination } from '../pagination/pagination';
 import './result-field.scss';
+import { useAppSelector } from '../../../pages/app/hook';
 
 export const PageDataContext = createContext<PageData>({} as PageData);
 
 export const ResultField = () => {
-  const { searchParams } = useContext(SearchContext);
-  const { searchTerm, itemQty } = searchParams;
+  // const { searchParams } = useContext(SearchContext);
+  // const { searchTerm, itemQty } = searchParams;
+  const searchTerm = useAppSelector((state) => state.searchTerm.value);
+  const itemQty = useAppSelector((state) => state.itemQty.value);
 
   const [isLoading, setIsLoading] = useState(true);
   const [pageData, setPageData] = useState<PageData>({

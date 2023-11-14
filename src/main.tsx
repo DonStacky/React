@@ -6,11 +6,15 @@ import {
   createRoutesFromElements,
 } from 'react-router-dom';
 import AppRouter from './router/AppRouter';
+import { Provider } from 'react-redux';
+import store from './pages/app/store';
 
 const router = createBrowserRouter(createRoutesFromElements(AppRouter));
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <RouterProvider router={router} />
-  </StrictMode>
+  <Provider store={store}>
+    <StrictMode>
+      <RouterProvider router={router} />
+    </StrictMode>
+  </Provider>
 );
