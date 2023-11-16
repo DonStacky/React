@@ -1,23 +1,21 @@
 import { createContext, /* useContext, */ useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-// import { SearchContext } from '../../../pages/app/App';
 import { PageData } from '../../../shared/types';
+import { useAppDispatch, useAppSelector } from '../../../store/hook';
 import { getPageData } from '../../api/get-page-data';
 import { CardList } from '../card/card-list';
 import { Loader } from '../loader/loader';
 import { Pagination } from '../pagination/pagination';
+import { toggleMainLoader } from './main-loader-slice';
 import './result-field.scss';
-import { useAppSelector } from '../../../pages/app/hook';
 
 export const PageDataContext = createContext<PageData>({} as PageData);
 
 export const ResultField = () => {
-  // const { searchParams } = useContext(SearchContext);
-  // const { searchTerm, itemQty } = searchParams;
   const searchTerm = useAppSelector((state) => state.searchTerm.value);
   const itemQty = useAppSelector((state) => state.itemQty.value);
-
-  const [isLoading, setIsLoading] = useState(true);
+  const isLoading = useAppSelector((state) => state.isMainLoading.value);
+  const dispatch = useAppDispatch();
   const [pageData, setPageData] = useState<PageData>({
     pageItems: [],
     lastPage: 1,
@@ -28,15 +26,15 @@ export const ResultField = () => {
   const { pageNumber } = useParams();
 
   useEffect(() => {
-    setIsLoading(true);
+    dispatch(toggleMainLoader(true));
 
     getPageData(searchTerm, itemQty || 8, Number(pageNumber) || 1).then(
       (result) => {
         setPageData(result);
-        setIsLoading(false);
+        dispatch(toggleMainLoader(false));
       }
     );
-  }, [pageNumber, searchTerm, itemQty]);
+  }, [pageNumber, searchTerm, itemQty, dispatch]);
 
   if (isLoading) {
     return <Loader />;

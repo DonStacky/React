@@ -1,7 +1,6 @@
-import { /* useContext, */ useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import { SearchContext } from '../../../pages/app/App';
-import { useAppDispatch, useAppSelector } from '../../../pages/app/hook';
+import { useAppDispatch, useAppSelector } from '../../../store/hook';
 import { getURL } from '../../model/get-url';
 import { setItemQty } from './itemqty-slice';
 import './search-field.scss';
@@ -11,8 +10,6 @@ export const SearchField = () => {
   const searchTerm = useAppSelector((state) => state.searchTerm.value);
   const itemQty = useAppSelector((state) => state.itemQty.value);
   const dispatch = useAppDispatch();
-  // const { searchParams, setSearchParams } = useContext(SearchContext);
-  // const { searchTerm, itemQty } = searchParams;
   const navigate = useNavigate();
   const [currentTerm, setCurrentTerm] = useState(searchTerm);
   const [currentItemQty, setCurrentItemQty] = useState(itemQty);
@@ -25,7 +22,6 @@ export const SearchField = () => {
     event.preventDefault();
     dispatch(setSearchTerm(currentTerm));
     dispatch(setItemQty(currentItemQty));
-    // setSearchParams({ searchTerm: currentTerm, itemQty: currentItemQty });
     navigate(getURL(1, currentTerm, currentItemQty));
     localStorage.setItem('searchTermRSG', currentTerm);
     localStorage.setItem('itemQtyRSG', String(currentItemQty));

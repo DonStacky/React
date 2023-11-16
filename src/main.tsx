@@ -1,13 +1,13 @@
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
 import {
   RouterProvider,
   createBrowserRouter,
   createRoutesFromElements,
 } from 'react-router-dom';
 import AppRouter from './router/AppRouter';
-import { Provider } from 'react-redux';
-import store from './pages/app/store';
+import store from './store/store';
 
 const router = createBrowserRouter(createRoutesFromElements(AppRouter));
 

@@ -12,10 +12,11 @@ const mainLoaderSlice = createSlice({
   name: 'isMainLoading',
   initialState,
   reducers: {
-    toggleDetailedLoader: (state) => {
-      state.value = !state.value;
+    toggleMainLoader: (state, action) => {
+      state.value = action.payload;
     },
   },
 });
 
+export const { toggleMainLoader } = mainLoaderSlice.actions;
 export default mainLoaderSlice.reducer;

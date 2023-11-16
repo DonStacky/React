@@ -1,19 +1,16 @@
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import { SearchContext } from '../../../pages/app/App';
 import { getURL } from '../../model/get-url';
 import { Button } from '../button/button';
-import './pagination.scss';
 import { PageDataContext } from '../result-field/result-field';
-import { useAppSelector } from '../../../pages/app/hook';
+import './pagination.scss';
+import { useAppSelector } from '../../../store/hook';
 
 export const Pagination = () => {
   const navigate = useNavigate();
   const searchTerm = useAppSelector((state) => state.searchTerm.value);
   const itemQty = useAppSelector((state) => state.itemQty.value);
   const { currentPage, lastPage } = useContext(PageDataContext);
-  // const { searchParams } = useContext(SearchContext);
-  // const { searchTerm, itemQty } = searchParams;
 
   return (
     <div className="pagination-box">
