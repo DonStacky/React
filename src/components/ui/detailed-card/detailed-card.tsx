@@ -1,41 +1,33 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { DetailsData } from '../../../shared/types';
 import { useAppDispatch, useAppSelector } from '../../../store/hook';
-import { getPokemonDetails } from '../../api/get-pokemon-details';
+import { useGetDetailedPokemonQuery } from '../../api/detailedApi';
 import { Loader } from '../loader/loader';
 import './detailed-card.scss';
 import { toggleDetailedLoader } from './detailed-loader-slice';
-
-const initDetails = {
-  name: '',
-  image: '',
-  abilities: [],
-  types: [],
-  height: '',
-  weight: '',
-  evolutionData: [],
-};
+import { setDetailed } from './detailed-slice';
 
 export function DetailedCard() {
-  const [details, setDetails] = useState<DetailsData>(initDetails);
-  const isLoading = useAppSelector((state) => state.isDetailedLoading.value);
   const dispatch = useAppDispatch();
-  const { detailsID: id } = useParams();
   const navigate = useNavigate();
+  const isDetailedLoading = useAppSelector(
+    (state) => state.isDetailedLoading.value
+  );
+  const { detailsID: id } = useParams();
+  const {
+    data: details,
+    isLoading,
+    isFetching,
+  } = useGetDetailedPokemonQuery({ id: Number(id) ?? 0 });
 
   useEffect(() => {
-    dispatch(toggleDetailedLoader(true));
-
-    getPokemonDetails(Number(id)).then((result) => {
-      setDetails(result);
-      dispatch(toggleDetailedLoader(false));
-    });
-  }, [id, dispatch]);
+    if (details) dispatch(setDetailed(details));
+    dispatch(toggleDetailedLoader(isLoading || isFetching));
+  }, [details, dispatch, isLoading, isFetching]);
 
   const closeModal = () => navigate(-1);
 
-  if (isLoading) {
+  if (isDetailedLoading) {
     return (
       <>
         <div className="details__overlay" onClick={closeModal}></div>

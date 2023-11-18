@@ -1,10 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { pokeapi } from '../components/api/pokeapi';
 import detailedLoaderReducer from '../components/ui/detailed-card/detailed-loader-slice';
+import detailedReducer from '../components/ui/detailed-card/detailed-slice';
 import mainLoaderReducer from '../components/ui/result-field/main-loader-slice';
+import pageDataReducer from '../components/ui/result-field/page-data-slice';
 import itemQtyReducer from '../components/ui/search-field/itemqty-slice';
 import searchTermReducer from '../components/ui/search-field/searchterm-slice';
-import { pokeapi } from '../components/api/pokeapi';
-import pageDataReducer from '../components/ui/result-field/page-data-slice';
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     isMainLoading: mainLoaderReducer,
     isDetailedLoading: detailedLoaderReducer,
     pageData: pageDataReducer,
+    detailed: detailedReducer,
     [pokeapi.reducerPath]: pokeapi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

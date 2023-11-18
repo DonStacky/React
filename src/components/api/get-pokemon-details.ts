@@ -13,7 +13,7 @@ export async function getPokemonDetails(id: number) {
   const image: string = json.sprites.other['official-artwork'].front_default;
   const height: string = `${json.height / 10} m`;
   const weight: string = `${json.weight / 10} kg`;
-  const types: string[] = json.types
+  const types: string = json.types
     .map((item: { type: { name: string } }) => item.type.name)
     .join(', ');
   const abilities: string[][] = [];

@@ -1,21 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { ResultData, PokemonData } from '../../shared/types';
+import { ResultData, PokemonData, Pokemon, Ability } from '../../shared/types';
 
 const baseUrl = 'https://pokeapi.co/api/v2';
 
-type Pokemon = {
-  data: {
-    abilities: { ability: { name: string } }[];
-    sprites: { other: { 'official-artwork': { front_default: string } } };
-    id: number;
-  };
-};
-type Ability = {
-  data: {
-    effect_entries: [{ language: { name: string }; effect: string }];
-    name: string;
-  };
-};
 type PokeapiArg = { searchTerm: string; itemQty: number; currentPage: number };
 
 export const pokeapi = createApi({
@@ -30,6 +17,10 @@ export const pokeapi = createApi({
         )) as { data: { results: ResultData[] } };
 
         let results: ResultData[] = data.results;
+
+        results = results.filter(
+          (pokemon: { name: string }) => !pokemon.name.includes('-')
+        );
 
         if (searchTerm) {
           results = results.filter((pokemon: { name: string }) =>
