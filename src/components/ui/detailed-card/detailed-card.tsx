@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../store/hook';
-import { useGetDetailedPokemonQuery } from '../../api/detailedApi';
+import { useGetDetailedPokemonQuery } from '../../api/detailed.api';
 import { Loader } from '../loader/loader';
 import './detailed-card.scss';
 import { toggleDetailedLoader } from './detailed-loader-slice';

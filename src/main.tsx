@@ -7,8 +7,9 @@ import {
   createRoutesFromElements,
 } from 'react-router-dom';
 import AppRouter from './router/AppRouter';
-import store from './store/store';
+import { setupStore } from './store/store';
 
+const store = setupStore();
 const router = createBrowserRouter(createRoutesFromElements(AppRouter));
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
