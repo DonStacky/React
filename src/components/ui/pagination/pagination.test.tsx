@@ -1,29 +1,17 @@
-import { render, screen } from '@testing-library/react';
+import 'whatwg-fetch';
+import { screen } from '@testing-library/react';
 import { Pagination } from './pagination';
-import { PageDataContext } from '../result-field/result-field';
 import { Router } from 'react-router-dom';
-import { SearchContext } from '../../../pages/app/App';
 import { createMemoryHistory } from 'history';
 import userEvent from '@testing-library/user-event';
-import { searchContextValue } from '../../../shared/test-data';
-
-const pageData = {
-  currentPage: 1,
-  itemQty: 1,
-  lastPage: 125,
-  pageItems: [],
-};
+import { renderWithProviders } from '../../../shared/test-utils';
 
 describe('Tests for the Pagination component', () => {
   it('Make sure the component updates URL query parameter when page changes', async () => {
     const history = createMemoryHistory();
-    render(
+    renderWithProviders(
       <Router location={history.location} navigator={history}>
-        <SearchContext.Provider value={searchContextValue}>
-          <PageDataContext.Provider value={pageData}>
-            <Pagination />
-          </PageDataContext.Provider>
-        </SearchContext.Provider>
+        <Pagination />
       </Router>
     );
 

@@ -1,29 +1,36 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { DetailsData } from '../../../shared/types';
-import { getPokemonDetails } from '../../api/get-pokemon-details';
+import { useAppDispatch, useAppSelector } from '../../../store/hook';
+import { useGetDetailedPokemonQuery } from '../../api/detailed.api';
 import { Loader } from '../loader/loader';
 import './detailed-card.scss';
+import { toggleDetailedLoader } from './detailed-loader-slice';
+import { setDetailed } from './detailed-slice';
 
 export function DetailedCard() {
-  const [details, setDetails] = useState<DetailsData>({} as DetailsData);
-  const [isLoading, setIsLoading] = useState(true);
-  const { detailsID: id } = useParams();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const isDetailedLoading = useAppSelector(
+    (state) => state.isDetailedLoading.value
+  );
+  const { detailsID: id } = useParams();
+  const {
+    data: details,
+    isLoading,
+    isFetching,
+  } = useGetDetailedPokemonQuery({ id: Number(id) ?? 0 });
 
   useEffect(() => {
-    setIsLoading(true);
+    if (details) dispatch(setDetailed(details));
+    dispatch(toggleDetailedLoader(isLoading || isFetching));
+  }, [details, dispatch, isLoading, isFetching]);
 
-    getPokemonDetails(Number(id)).then((result) => {
-      setDetails(result);
-      setIsLoading(false);
-    });
-  }, [id]);
+  const closeModal = () => navigate(-1);
 
-  if (isLoading) {
+  if (isDetailedLoading) {
     return (
       <>
-        <div className="details__overlay" onClick={() => navigate(-1)}></div>
+        <div className="details__overlay" onClick={closeModal}></div>
         <div className="details" data-testid="detailed-card">
           <Loader />
         </div>
@@ -32,7 +39,7 @@ export function DetailedCard() {
   } else if (details) {
     return (
       <>
-        <div className="details__overlay" onClick={() => navigate(-1)}></div>
+        <div className="details__overlay" onClick={closeModal}></div>
         <div className="details" data-testid="detailed-card">
           <div onClick={() => navigate(-1)} className="details__btn-box">
             <button className="details__button">x</button>

@@ -1,52 +1,45 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { SearchContext } from '../../../pages/app/App';
-import { PageData } from '../../../shared/types';
-import { getPageData } from '../../api/get-page-data';
+import { useAppDispatch, useAppSelector } from '../../../store/hook';
 import { CardList } from '../card/card-list';
 import { Loader } from '../loader/loader';
 import { Pagination } from '../pagination/pagination';
+import { toggleMainLoader } from './main-loader-slice';
 import './result-field.scss';
-
-export const PageDataContext = createContext<PageData>({} as PageData);
+import { useGetPokemonsQuery } from '../../api/pokeapi';
+import { setPageData } from './page-data-slice';
 
 export const ResultField = () => {
-  const { searchParams } = useContext(SearchContext);
-  const { searchTerm, itemQty } = searchParams;
+  const pageData = useAppSelector((state) => state.pageData.value);
+  const searchTerm = useAppSelector((state) => state.searchTerm.value);
+  const itemQty = useAppSelector((state) => state.itemQty.value);
+  const isMainLoading = useAppSelector((state) => state.isMainLoading.value);
+  const { pageNumber } = useParams();
+  const dispatch = useAppDispatch();
 
-  const [isLoading, setIsLoading] = useState(true);
-  const [pageData, setPageData] = useState<PageData>({
-    pageItems: [],
-    lastPage: 1,
-    currentPage: 1,
-    itemQty: 0,
+  const {
+    data: newPageData,
+    isLoading,
+    isFetching,
+  } = useGetPokemonsQuery({
+    searchTerm,
+    itemQty,
+    currentPage: Number(pageNumber) || 1,
   });
 
-  const { pageNumber } = useParams();
-
   useEffect(() => {
-    setIsLoading(true);
+    if (newPageData) dispatch(setPageData(newPageData));
+    dispatch(toggleMainLoader(isLoading || isFetching));
+  }, [newPageData, dispatch, isLoading, isFetching]);
 
-    getPageData(searchTerm, itemQty || 8, Number(pageNumber) || 1).then(
-      (result) => {
-        setPageData(result);
-        setIsLoading(false);
-      }
-    );
-
-    localStorage.setItem('queryDataRSG', `${searchTerm}&${itemQty}`);
-  }, [pageNumber, searchTerm, itemQty]);
-
-  if (isLoading) {
+  if (isMainLoading) {
     return <Loader />;
   } else if (pageData.pageItems.length) {
     return (
       <>
         <div className="container">
-          <PageDataContext.Provider value={pageData}>
-            <CardList />
-            <Pagination />
-          </PageDataContext.Provider>
+          <CardList />
+          <Pagination />
         </div>
       </>
     );

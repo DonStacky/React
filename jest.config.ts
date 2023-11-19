@@ -12,6 +12,14 @@ const config: Config = {
     '\\.(css|scss)$': '<rootDir>/__mocks__/styleMock.ts',
   },
   testEnvironment: 'jsdom',
+  setupFilesAfterEnv: [
+    '@testing-library/jest-dom',
+    '<rootDir>/src/setup-tests.ts',
+  ],
+  setupFiles: ['./jest.polyfills.js'],
+  testEnvironmentOptions: {
+    customExportConditions: [''],
+  },
 };
 
 export default config;

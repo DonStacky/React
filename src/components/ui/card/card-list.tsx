@@ -1,10 +1,10 @@
-import { useContext } from 'react';
 import { Outlet } from 'react-router-dom';
-import { PageDataContext } from '../result-field/result-field';
+import { useAppSelector } from '../../../store/hook';
 import { Card } from './card';
 
 export const CardList = () => {
-  const { pageItems, currentPage } = useContext(PageDataContext);
+  const pageData = useAppSelector((state) => state.pageData.value);
+  const { pageItems, currentPage } = pageData;
 
   return (
     <div className="result-field" data-testid="card-list">
