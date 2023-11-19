@@ -12,10 +12,9 @@ export const pokeapi = createApi({
     getPokemons: build.query({
       async queryFn(_arg, _queryApi, _extraOptions, fetchWithBQ) {
         const { searchTerm, itemQty, currentPage } = _arg as PokeapiArg;
-        const { data } = (await fetchWithBQ(
-          '/pokemon/?limit=1000&offset=0'
-        )) as { data: { results: ResultData[] } };
-
+        const { data } = (await fetchWithBQ('/pokemon')) as {
+          data: { results: ResultData[] };
+        };
         let results: ResultData[] = data.results;
 
         results = results.filter(
@@ -44,7 +43,6 @@ export const pokeapi = createApi({
             const name =
               results[pokemonNumber].name[0].toUpperCase() +
               results[pokemonNumber].name.slice(1);
-
             const { data: json } = (await fetchWithBQ(
               `/pokemon/${results[pokemonNumber].name}`
             )) as Pokemon;

@@ -8,7 +8,7 @@ interface pageDataState {
 const initialState: pageDataState = {
   value: {
     pageItems: [],
-    lastPage: 1,
+    lastPage: 125,
     currentPage: 1,
     itemQty: 8,
   },

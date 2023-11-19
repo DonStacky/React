@@ -6,13 +6,6 @@ import { createMemoryHistory } from 'history';
 import userEvent from '@testing-library/user-event';
 import { renderWithProviders } from '../../../shared/test-utils';
 
-// const pageData = {
-//   currentPage: 1,
-//   itemQty: 1,
-//   lastPage: 125,
-//   pageItems: [],
-// };
-
 describe('Tests for the Pagination component', () => {
   it('Make sure the component updates URL query parameter when page changes', async () => {
     const history = createMemoryHistory();
@@ -25,7 +18,7 @@ describe('Tests for the Pagination component', () => {
     const firstPage = screen.getByRole('button', { name: '<<' });
     const prevPage = screen.getByRole('button', { name: '<' });
     const nextPage = screen.getByRole('button', { name: '>' });
-    // const lastPage = screen.getByRole('button', { name: '>>' });
+    const lastPage = screen.getByRole('button', { name: '>>' });
 
     expect(history.location.pathname).toBe('/');
 
@@ -37,9 +30,9 @@ describe('Tests for the Pagination component', () => {
 
     expect(history.location.pathname).toBe(`/page/2`);
 
-    // await userEvent.click(lastPage);
+    await userEvent.click(lastPage);
 
-    // expect(history.location.pathname).toBe(`/page/125`);
+    expect(history.location.pathname).toBe(`/page/125`);
 
     await userEvent.click(prevPage);
 
