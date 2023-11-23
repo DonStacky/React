@@ -1,6 +1,6 @@
 import { pepeData } from '../../assets/data/pepe-data';
 import { DetailsData } from '../../shared/types';
-import { BASE_URL } from './constants';
+export const BASE_URL = 'https://pokeapi.co/api/v2/pokemon';
 
 export async function getPokemonDetails(id: number) {
   if (id === 0) return pepeData;

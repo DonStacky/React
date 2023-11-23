@@ -1,14 +1,18 @@
 import { PokemonData, ResultData } from '../../shared/types';
-import { BASE_URL } from './constants';
+export const BASE_URL = 'https://pokeapi.co/api/v2/pokemon';
 
 export async function getPageData(
   searchTerm = '',
   itemQty = 8,
   currentPage = 1
 ) {
-  const response = await fetch(BASE_URL + '?limit=1000&offset=0');
+  const response = await fetch(BASE_URL + '?limit=1000');
   const json = await response.json();
   let results: ResultData[] = json.results;
+
+  results = results.filter(
+    (pokemon: { name: string }) => !pokemon.name.includes('-')
+  );
 
   if (searchTerm) {
     results = results.filter((pokemon: { name: string }) =>

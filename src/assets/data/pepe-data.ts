@@ -1,7 +1,7 @@
-import Pepe from 'image/pepe.webp';
-import PepeSmall from 'image/pepe1.webp';
-import Cap from 'image/pepeCap.webp';
-import Joker from 'image/pepeJoker.webp';
+import Pepe from 'public/image/pepe.webp';
+import PepeSmall from 'public/image/pepe1.webp';
+import Cap from 'public/image/pepeCap.webp';
+import Joker from 'public/image/pepeJoker.webp';
 import { DetailsData } from '../../shared/types';
 
 export const pepeData: DetailsData = {
