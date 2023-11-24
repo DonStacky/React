@@ -1,8 +1,7 @@
 import clsx from 'clsx';
-import image from 'public/image/not-found.png';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import styles from './not-found.module.scss';
 
 export const NotFound = () => {
@@ -15,7 +14,7 @@ export const NotFound = () => {
   return (
     <div className={clsx(styles['not-found'], styles.container)}>
       <Image
-        src={image}
+        src="/public/image/not-found.png"
         alt="not-found"
         className={styles['not-found__image']}
         width={604}

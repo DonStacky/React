@@ -1,7 +1,7 @@
 import { Button } from '../button';
 import btnStyles from '../button/button.module.scss';
 import styles from './pagination.module.scss';
-import { useRouter } from 'next/router';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 interface Props {
   currentPage: number;
@@ -10,7 +10,9 @@ interface Props {
 
 export const Pagination = ({ currentPage, lastPage }: Props) => {
   const router = useRouter();
-  const { search, itemqty } = router.query;
+  const searchParams = useSearchParams();
+  const search = searchParams.get('search');
+  const itemqty = searchParams.get('itemqty');
   const searchTerm = search ?? '';
   const itemQty = itemqty ?? '';
 
@@ -18,9 +20,9 @@ export const Pagination = ({ currentPage, lastPage }: Props) => {
     <div className={styles['pagination-box']}>
       <Button
         className={currentPage === 1 ? btnStyles['button--disable'] : ''}
-        onClick={() =>
-          router.push(`/page/1?search=${searchTerm}&itemqty=${itemQty}`)
-        }
+        onClick={() => {
+          router.push(`/page/1?search=${searchTerm}&itemqty=${itemQty}`);
+        }}
       >
         &lt;&lt;
       </Button>

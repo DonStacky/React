@@ -1,20 +1,24 @@
 import clsx from 'clsx';
 import React, { useState } from 'react';
 import styles from './search-field.module.scss';
-import { useRouter } from 'next/router';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 export const SearchField = () => {
   const router = useRouter();
-  const { search, itemqty } = router.query;
+  const searchParams = useSearchParams();
+  const search = searchParams.get('search');
+  const itemqty = searchParams.get('itemqty');
   const [currentTerm, setCurrentTerm] = useState(search ?? '');
   const [currentItemQty, setCurrentItemQty] = useState(itemqty ?? 8);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCurrentTerm(event.target.value.trim());
+    console.log(currentTerm);
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    console.log(currentTerm);
     router.push(
       `/page/1?search=${currentTerm}&itemqty=${currentItemQty || ''}`
     );

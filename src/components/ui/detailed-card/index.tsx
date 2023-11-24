@@ -1,10 +1,6 @@
-// import { useState, useEffect } from 'react';
-// import { useNavigate, useParams } from 'react-router-dom';
 import { DetailsData } from '../../../shared/types';
-// import { getPokemonDetails } from '../../api/get-pokemon-details';
-// import { Loader } from '../loader';
 import styles from './detailed-card.module.scss';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
 interface Props {

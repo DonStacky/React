@@ -9,7 +9,7 @@ global.fetch = jest.fn();
 const mockFetch = fetch as jest.MockedFunction<typeof fetch>;
 
 export const fetchArgs = {
-  base: 'https://pokeapi.co/api/v2/pokemon?limit=1000&offset=0',
+  base: 'https://pokeapi.co/api/v2/pokemon?limit=1000',
   details: 'https://pokeapi.co/api/v2/pokemon/1/',
   ability: 'https://pokeapi.co/api/v2/ability/34/',
 };
