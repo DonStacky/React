@@ -1,3 +1,4 @@
+import { GetServerSideProps } from 'next';
 import React from 'react';
 import { getPageData } from '../../src/components/api/get-page-data';
 import Layout from '../../src/components/layout';
@@ -18,10 +19,18 @@ const Page = ({ pageData }: Props) => {
 
 export default Page;
 
-export async function getServerSideProps({ params, query }) {
-  const page = params.number;
-  const searchTerm = query.search;
+export const getServerSideProps: GetServerSideProps = async ({
+  params,
+  query,
+}) => {
+  const page = params?.number;
+  const searchTerm = query.search as string;
   const itemQty = query.itemqty;
-  const pageData = await getPageData(searchTerm, itemQty || 8, page || 1);
+  const pageData = await getPageData(
+    searchTerm,
+    Number(itemQty) || 8,
+    Number(page) || 1
+  );
+
   return { props: { pageData } };
-}
+};

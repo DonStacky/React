@@ -1,8 +1,8 @@
 import { getPageData } from './get-page-data';
 import {
   jsonPokemon,
-  jsonAbility,
   expectedPageData,
+  jsonAbility2,
 } from '../../shared/test-data';
 
 global.fetch = jest.fn();
@@ -34,7 +34,7 @@ mockFetch.mockImplementation((arg) => {
     } as Response);
   } else {
     return Promise.resolve({
-      json: () => Promise.resolve(jsonAbility),
+      json: () => Promise.resolve(jsonAbility2),
     } as Response);
   }
 });

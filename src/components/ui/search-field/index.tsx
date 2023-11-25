@@ -13,12 +13,10 @@ export const SearchField = () => {
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCurrentTerm(event.target.value.trim());
-    console.log(currentTerm);
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(currentTerm);
     router.push(
       `/page/1?search=${currentTerm}&itemqty=${currentItemQty || ''}`
     );

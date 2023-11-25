@@ -30,7 +30,7 @@ export const expectedPageData = {
       description:
         "This Pokémon's Speed is doubled during strong sunlight.\n\nThis bonus does not count as a stat modifier.",
       image:
-        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png',
+        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png',
     },
   ],
 };
@@ -43,26 +43,10 @@ export const detailedPageData = {
     ],
     [
       'chlorophyll',
-      "This Pokémon's Speed is doubled during strong sunl…t.\n\nThis bonus does not count as a stat modifier.",
+      "This Pokémon's Speed is doubled during strong sunlight.\n\nThis bonus does not count as a stat modifier.",
     ],
   ],
-  evolutionData: [
-    {
-      name: 'bulbasaur',
-      image:
-        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png',
-    },
-    {
-      name: 'ivysaur',
-      image:
-        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png',
-    },
-    {
-      name: 'venusaur',
-      image:
-        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png',
-    },
-  ],
+  evolutionData: [],
   height: '0.7 m',
   image:
     'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png',
@@ -97,7 +81,7 @@ export const jsonPokemon = {
     other: {
       'official-artwork': {
         front_default:
-          'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png',
+          'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png',
       },
     },
   },
@@ -112,14 +96,43 @@ export const jsonPokemon = {
   species: {
     url: 'https://pokeapi.co/api/v2/pokemon-species/2/',
   },
+  weight: 69,
+  height: 7,
+  evolutionData: [
+    {
+      name: 'bulbasaur',
+      image:
+        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png',
+    },
+    {
+      name: 'ivysaur',
+      image:
+        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png',
+    },
+    {
+      name: 'venusaur',
+      image:
+        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png',
+    },
+  ],
 };
 
-export const jsonAbility = {
+export const jsonAbility2 = {
   name: 'chlorophyll',
   effect_entries: [
     {
       effect:
         "This Pokémon's Speed is doubled during strong sunlight.\n\nThis bonus does not count as a stat modifier.",
+      language: { name: 'en', url: 'https://pokeapi.co/api/v2/language/9/' },
+    },
+  ],
+};
+export const jsonAbility1 = {
+  name: 'overgrow',
+  effect_entries: [
+    {
+      effect:
+        'When this Pokémon has 1/3 or less of its HP remain…s-type moves inflict 1.5× as much regular damage.',
       language: { name: 'en', url: 'https://pokeapi.co/api/v2/language/9/' },
     },
   ],

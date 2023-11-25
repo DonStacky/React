@@ -3,7 +3,7 @@ import { ErrorBoundary } from '../../model/error-boundary';
 import { ErrorButton } from '../error-button';
 import styles from './card.module.scss';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 type CardProps = {
   id: number;
@@ -15,12 +15,19 @@ type CardProps = {
 
 export const Card = ({ id, name, description, image, page }: CardProps) => {
   const { push } = useRouter();
+  const searchParams = useSearchParams();
+  const search = searchParams.get('search');
+  const itemqty = searchParams.get('itemqty');
 
   const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
     const target = event.target as HTMLElement;
     if (target.tagName === 'BUTTON') return;
 
-    push(`/page/${page}/details/${id}`);
+    push(
+      `/page/${page}/details/${id}?search=${search ?? ''}&itemqty=${
+        itemqty ?? ''
+      }`
+    );
   };
 
   return (

@@ -18,8 +18,10 @@ export const ResultField = ({ pageData, detailsData }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const handleStart = (url: string) =>
+    const handleStart = (url: string) => {
+      console.log(url, router.asPath);
       url !== router.asPath && setIsLoading(true);
+    };
     const handleComplete = (url: string) =>
       url === router.asPath && setIsLoading(false);
 
