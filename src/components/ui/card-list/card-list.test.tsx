@@ -1,43 +1,35 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { SearchContext } from '../../../pages/app/App';
-import { getPageData } from '../../api/get-page-data';
-import { PageDataContext, ResultField } from '../result-field/result-field';
-import { CardList } from './card-list';
-import { searchContextValue } from '../../../shared/test-data';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { ResultField } from '../result-field';
+import { CardList } from './';
 
-const pageDataWithCard = {
-  pageItems: [
-    {
-      id: 1,
-      name: 'Bulbasaur',
-      description:
-        "This Pokémon's Speed is doubled during strong sunl…t.\n\nThis bonus does not count as a stat modifier.",
-      image:
-        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png',
-    },
-    {
-      id: 2,
-      name: 'Bulbasaur',
-      description:
-        "This Pokémon's Speed is doubled during strong sunl…t.\n\nThis bonus does not count as a stat modifier.",
-      image:
-        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png',
-    },
-    {
-      id: 3,
-      name: 'Bulbasaur',
-      description:
-        "This Pokémon's Speed is doubled during strong sunl…t.\n\nThis bonus does not count as a stat modifier.",
-      image:
-        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png',
-    },
-  ],
-  currentPage: 1,
-  lastPage: 1,
-  itemQty: 3,
-};
+const pageDataWithCard = [
+  {
+    id: 1,
+    name: 'Bulbasaur',
+    description:
+      "This Pokémon's Speed is doubled during strong sunl…t.\n\nThis bonus does not count as a stat modifier.",
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png',
+  },
+  {
+    id: 2,
+    name: 'Bulbasaur',
+    description:
+      "This Pokémon's Speed is doubled during strong sunl…t.\n\nThis bonus does not count as a stat modifier.",
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png',
+  },
+  {
+    id: 3,
+    name: 'Bulbasaur',
+    description:
+      "This Pokémon's Speed is doubled during strong sunl…t.\n\nThis bonus does not count as a stat modifier.",
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png',
+  },
+];
 
 const pageDataNoCard = {
   pageItems: [],
@@ -46,20 +38,24 @@ const pageDataNoCard = {
   itemQty: 0,
 };
 
-jest.mock('../../api/get-page-data');
-(getPageData as jest.Mock).mockImplementation(() =>
-  Promise.resolve(pageDataNoCard)
-);
+jest.mock('next/router', () => require('next-router-mock'));
+
+jest.mock('next/navigation');
+const pushMock = jest.fn();
+const backMock = jest.fn();
+
+(useRouter as jest.Mock).mockReturnValue({
+  push: pushMock,
+  back: backMock,
+});
+
+(useSearchParams as jest.Mock).mockReturnValue({
+  get: () => 'test',
+});
 
 describe('Tests for the Card List component', () => {
   it('Verify that the component renders the specified number of cards', () => {
-    render(
-      <Router>
-        <PageDataContext.Provider value={pageDataWithCard}>
-          <CardList />
-        </PageDataContext.Provider>
-      </Router>
-    );
+    render(<CardList pageItems={pageDataWithCard} currentPage={1} />);
 
     const cardList = screen.getByTestId('card-list');
     const cards = screen.getAllByTestId('card');
@@ -69,13 +65,7 @@ describe('Tests for the Card List component', () => {
   });
 
   it('Check that an appropriate message is displayed if no cards are present', async () => {
-    render(
-      <Router>
-        <SearchContext.Provider value={searchContextValue}>
-          <ResultField />
-        </SearchContext.Provider>
-      </Router>
-    );
+    render(<ResultField pageData={pageDataNoCard} />);
 
     const cardList = screen.queryByTestId('card-list');
     const cards = screen.queryByTestId('card');
