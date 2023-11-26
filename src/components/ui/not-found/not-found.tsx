@@ -14,7 +14,7 @@ export const NotFound = () => {
   return (
     <div className={clsx(styles['not-found'], styles.container)}>
       <Image
-        src="/public/image/not-found.png"
+        src="/image/not-found.png"
         alt="not-found"
         className={styles['not-found__image']}
         width={604}
