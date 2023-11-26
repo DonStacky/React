@@ -11,7 +11,7 @@ export const pepeData: DetailsData = {
     ['Bup', 'Nose changes color when pressed'],
     ['Honk', 'Make honk'],
   ],
-  types: ['memes'],
+  types: 'memes',
   height: '1 m',
   weight: '40 kg',
   evolutionData: [
