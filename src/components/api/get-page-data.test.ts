@@ -1,15 +1,15 @@
 import { getPageData } from './get-page-data';
 import {
   jsonPokemon,
-  jsonAbility,
   expectedPageData,
+  jsonAbility2,
 } from '../../shared/test-data';
 
 global.fetch = jest.fn();
 const mockFetch = fetch as jest.MockedFunction<typeof fetch>;
 
 export const fetchArgs = {
-  base: 'https://pokeapi.co/api/v2/pokemon?limit=1000&offset=0',
+  base: 'https://pokeapi.co/api/v2/pokemon?limit=1000',
   details: 'https://pokeapi.co/api/v2/pokemon/1/',
   ability: 'https://pokeapi.co/api/v2/ability/34/',
 };
@@ -34,7 +34,7 @@ mockFetch.mockImplementation((arg) => {
     } as Response);
   } else {
     return Promise.resolve({
-      json: () => Promise.resolve(jsonAbility),
+      json: () => Promise.resolve(jsonAbility2),
     } as Response);
   }
 });

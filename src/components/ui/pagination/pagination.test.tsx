@@ -1,53 +1,38 @@
 import { render, screen } from '@testing-library/react';
-import { Pagination } from './pagination';
-import { PageDataContext } from '../result-field/result-field';
-import { Router } from 'react-router-dom';
-import { SearchContext } from '../../../pages/app/App';
-import { createMemoryHistory } from 'history';
 import userEvent from '@testing-library/user-event';
-import { searchContextValue } from '../../../shared/test-data';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { Pagination } from './pagination';
 
-const pageData = {
-  currentPage: 1,
-  itemQty: 1,
-  lastPage: 125,
-  pageItems: [],
-};
+jest.mock('next/navigation');
+const pushMock = jest.fn();
+
+(useRouter as jest.Mock).mockReturnValue({
+  push: pushMock,
+});
+
+(useSearchParams as jest.Mock).mockReturnValue({
+  get: () => '',
+});
 
 describe('Tests for the Pagination component', () => {
   it('Make sure the component updates URL query parameter when page changes', async () => {
-    const history = createMemoryHistory();
-    render(
-      <Router location={history.location} navigator={history}>
-        <SearchContext.Provider value={searchContextValue}>
-          <PageDataContext.Provider value={pageData}>
-            <Pagination />
-          </PageDataContext.Provider>
-        </SearchContext.Provider>
-      </Router>
-    );
+    render(<Pagination currentPage={1} lastPage={3} />);
 
     const firstPage = screen.getByRole('button', { name: '<<' });
     const prevPage = screen.getByRole('button', { name: '<' });
     const nextPage = screen.getByRole('button', { name: '>' });
     const lastPage = screen.getByRole('button', { name: '>>' });
 
-    expect(history.location.pathname).toBe('/');
-
     await userEvent.click(firstPage);
-
-    expect(history.location.pathname).toBe(`/page/1`);
+    expect(pushMock).toHaveBeenCalledWith(`/page/1?search=&itemqty=`);
 
     await userEvent.click(nextPage);
-
-    expect(history.location.pathname).toBe(`/page/2`);
+    expect(pushMock).toHaveBeenCalledWith(`/page/2?search=&itemqty=`);
 
     await userEvent.click(lastPage);
-
-    expect(history.location.pathname).toBe(`/page/125`);
+    expect(pushMock).toHaveBeenCalledWith(`/page/3?search=&itemqty=`);
 
     await userEvent.click(prevPage);
-
-    expect(history.location.pathname).toBe(`/page/0`);
+    expect(pushMock).toHaveBeenCalledWith(`/page/2?search=&itemqty=`);
   });
 });

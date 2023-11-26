@@ -1,7 +1,7 @@
 import { getPokemonsData } from './get-page-data';
 import { jsonPokemon } from '../../shared/test-data';
 import { fetchArgs } from '../../shared/test-data';
-import { jsonAbility } from '../../shared/test-data';
+import { jsonAbility2 } from '../../shared/test-data';
 
 global.fetch = jest.fn();
 
@@ -16,7 +16,7 @@ const result = {
     "This Pokémon's Speed is doubled during strong sunlight.\n\nThis bonus does not count as a stat modifier.",
   id: 2,
   image:
-    'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png',
+    'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png',
   name: 'Bulbasaur',
 };
 
@@ -29,7 +29,7 @@ describe('Get pokemon data', () => {
         } as Response);
       } else {
         return Promise.resolve({
-          json: () => Promise.resolve(jsonAbility),
+          json: () => Promise.resolve(jsonAbility2),
         } as Response);
       }
     });

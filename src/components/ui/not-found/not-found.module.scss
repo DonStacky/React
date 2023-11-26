@@ -1,0 +1,33 @@
+@import '../../../styles/constants.scss';
+
+.not-found {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
+  padding: 0 2rem;
+
+  &__image {
+    width: 40rem;
+    height: auto;
+  }
+
+  &__message {
+    width: 40rem;
+  }
+
+  &__text {
+    font-size: 1.6rem;
+  }
+
+  &__title {
+    font-size: 3rem;
+  }
+
+  &__link {
+    cursor: pointer;
+    text-decoration: underline;
+    color: $secondaryColor;
+  }
+}

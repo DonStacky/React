@@ -1,6 +1,5 @@
 import { Component, ReactNode } from 'react';
-import { Card } from '../ui/card/card';
-import Pepe from '../../assets/image/pepe.webp';
+import { Card } from '../ui/card';
 
 const ERROR_MESSAGE =
   'On behalf of clowns-developers apologize for the inconvenience!\n';
@@ -33,7 +32,7 @@ export class ErrorBoundary extends Component<Props, State> {
           id={0}
           name="Caught error"
           description={ERROR_MESSAGE}
-          image={Pepe}
+          image="/image/pepe.webp"
         />
       );
     }

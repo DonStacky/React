@@ -1,22 +1,22 @@
 import { pepeData } from '../../assets/data/pepe-data';
-import { DetailsData } from '../../shared/types';
-import { BASE_URL } from './constants';
+import { DetailsData, Pokemon } from '../../shared/types';
+export const BASE_URL = 'https://pokeapi.co/api/v2/pokemon';
 
 export async function getPokemonDetails(id: number) {
   if (id === 0) return pepeData;
 
   const response = await fetch(BASE_URL + `/${id}`);
-  const json = await response.json();
+  const json = (await response.json()) as Pokemon;
   const abilitiesResp = json.abilities;
 
-  const name: string = json.name[0].toUpperCase() + json.name.slice(1);
-  const image: string = json.sprites.other['official-artwork'].front_default;
-  const height: string = `${json.height / 10} m`;
-  const weight: string = `${json.weight / 10} kg`;
-  const types: string[] = json.types
+  const name = json.name[0].toUpperCase() + json.name.slice(1);
+  const image = json.sprites.other['official-artwork'].front_default;
+  const height = `${json.height / 10} m`;
+  const weight = `${json.weight / 10} kg`;
+  const types = json.types
     .map((item: { type: { name: string } }) => item.type.name)
     .join(', ');
-  const abilities: string[][] = [];
+  const abilities = [];
 
   for (let i = 0; i < abilitiesResp.length; i++) {
     const item = abilitiesResp[i];

@@ -1,50 +1,36 @@
 import '@testing-library/jest-dom';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { BrowserRouter, Routes } from 'react-router-dom';
-import AppRouter from '../../../router/AppRouter';
+import { useRouter, useSearchParams } from 'next/navigation';
+import DetailedCard from '../../../../pages/page/[number]/details/[id]';
 import { detailedPageData, pageData } from '../../../shared/test-data';
-import { getPageData } from '../../api/get-page-data';
-import { getPokemonDetails } from '../../api/get-pokemon-details';
-import { DetailedCard } from './detailed-card';
 
-jest.mock('../../api/get-pokemon-details');
-(getPokemonDetails as jest.Mock).mockImplementation(() =>
-  Promise.resolve(detailedPageData)
-);
+jest.mock('next/router', () => require('next-router-mock'));
 
-jest.mock('../../api/get-page-data');
-(getPageData as jest.Mock).mockImplementation(() => Promise.resolve(pageData));
+jest.mock('next/navigation');
+const pushMock = jest.fn();
+const backMock = jest.fn();
+
+(useRouter as jest.Mock).mockReturnValue({
+  push: pushMock,
+  back: backMock,
+});
+
+(useSearchParams as jest.Mock).mockReturnValue({
+  get: () => 'test',
+});
 
 describe('Tests for the Detailed Card component', () => {
-  it('Check that a loading indicator is displayed while fetching data', async () => {
-    render(
-      <BrowserRouter>
-        <DetailedCard />
-      </BrowserRouter>
-    );
-
-    const card = screen.getByTestId('detailed-card');
-    expect(card).toBeInTheDocument();
-    const loader = screen.getByAltText('pokeball-loader');
-    expect(loader).toBeInTheDocument();
-
-    await waitFor(() => {
-      expect(loader).not.toBeInTheDocument();
-    });
-  });
-
   it('Make sure the detailed card component correctly displays the detailed card data', async () => {
-    render(
-      <BrowserRouter>
-        <DetailedCard />
-      </BrowserRouter>
-    );
+    render(<DetailedCard detailsData={detailedPageData} pageData={pageData} />);
 
-    const name = await screen.findByRole('heading', { name: 'Bulbasaur' });
+    const name = await screen.findByRole('heading', {
+      name: 'Bulbasaur',
+      level: 2,
+    });
     const height = await screen.findByRole('heading', { name: 'Height' });
     const weight = await screen.findByRole('heading', { name: 'Weight' });
-    const img = await screen.findByRole('img', { name: 'bulbasaur' });
+    const img = await screen.findByRole('img', { name: 'Bulbasaur' });
 
     expect(name).toBeInTheDocument();
     expect(height).toBeInTheDocument();
@@ -57,7 +43,7 @@ describe('Tests for the Detailed Card component', () => {
     const typesInfo = screen.getByText('grass, poison');
 
     expect(imgSrc).toEqual(
-      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png'
+      '/_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2FPokeAPI%2Fsprites%2Fmaster%2Fsprites%2Fpokemon%2Fother%2Fofficial-artwork%2F1.png&w=640&q=75'
     );
     expect(heightInfo).toBeInTheDocument();
     expect(weightInfo).toBeInTheDocument();
@@ -65,16 +51,8 @@ describe('Tests for the Detailed Card component', () => {
   });
 
   it('Ensure that clicking the close button hides the component', async () => {
-    render(
-      <BrowserRouter>
-        <Routes>{AppRouter}</Routes>
-      </BrowserRouter>
-    );
+    render(<DetailedCard detailsData={detailedPageData} pageData={pageData} />);
 
-    const linkToDetails = await screen.findByRole('link');
-    expect(linkToDetails).toBeInTheDocument();
-
-    await userEvent.click(linkToDetails);
     const detailedCard = screen.getByRole('heading', {
       name: 'Stage of evolution',
     });
@@ -82,6 +60,6 @@ describe('Tests for the Detailed Card component', () => {
 
     const closeButton = await screen.findByRole('button', { name: 'x' });
     await userEvent.click(closeButton);
-    expect(detailedCard).not.toBeInTheDocument();
+    expect(backMock).toHaveBeenCalled();
   });
 });

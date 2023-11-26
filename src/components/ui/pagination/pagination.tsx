@@ -1,43 +1,61 @@
-import { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { SearchContext } from '../../../pages/app/App';
-import { getURL } from '../../model/get-url';
-import { Button } from '../button/button';
-import './pagination.scss';
-import { PageDataContext } from '../result-field/result-field';
+import { Button } from '../button';
+import btnStyles from '../button/button.module.scss';
+import styles from './pagination.module.scss';
+import { useRouter, useSearchParams } from 'next/navigation';
 
-export const Pagination = () => {
-  const navigate = useNavigate();
-  const { currentPage, lastPage } = useContext(PageDataContext);
-  const { searchParams } = useContext(SearchContext);
-  const { searchTerm, itemQty } = searchParams;
+interface Props {
+  currentPage: number;
+  lastPage: number;
+}
+
+export const Pagination = ({ currentPage, lastPage }: Props) => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const search = searchParams.get('search');
+  const itemqty = searchParams.get('itemqty');
+  const searchTerm = search ?? '';
+  const itemQty = itemqty ?? '';
 
   return (
-    <div className="pagination-box">
+    <div className={styles['pagination-box']}>
       <Button
-        onClick={() => navigate(getURL(1, searchTerm, itemQty))}
-        className={currentPage === 1 ? 'button--disable' : ''}
+        className={currentPage === 1 ? btnStyles['button--disable'] : ''}
+        onClick={() => {
+          router.push(`/page/1?search=${searchTerm}&itemqty=${itemQty}`);
+        }}
       >
         &lt;&lt;
       </Button>
       <Button
-        onClick={() => navigate(getURL(currentPage - 1, searchTerm, itemQty))}
-        className={currentPage === 1 ? 'button--disable' : ''}
+        className={currentPage === 1 ? btnStyles['button--disable'] : ''}
+        onClick={() =>
+          router.push(
+            `/page/${currentPage - 1}?search=${searchTerm}&itemqty=${itemQty}`
+          )
+        }
       >
         &lt;
       </Button>
-      <Button className="button--outcursor">
+      <Button className={btnStyles['button--outcursor']}>
         {`${currentPage} of ${lastPage}`}
       </Button>
       <Button
-        onClick={() => navigate(getURL(currentPage + 1, searchTerm, itemQty))}
-        className={currentPage === lastPage ? 'button--disable' : ''}
+        className={currentPage === lastPage ? btnStyles['button--disable'] : ''}
+        onClick={() =>
+          router.push(
+            `/page/${currentPage + 1}?search=${searchTerm}&itemqty=${itemQty}`
+          )
+        }
       >
         &gt;
       </Button>
       <Button
-        onClick={() => navigate(getURL(lastPage, searchTerm, itemQty))}
-        className={currentPage === lastPage ? 'button--disable' : ''}
+        className={currentPage === lastPage ? btnStyles['button--disable'] : ''}
+        onClick={() =>
+          router.push(
+            `/page/${lastPage}?search=${searchTerm}&itemqty=${itemQty}`
+          )
+        }
       >
         &gt;&gt;
       </Button>
