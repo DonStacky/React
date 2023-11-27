@@ -1,9 +1,19 @@
-import './App.css';
+import { Outlet } from 'react-router-dom';
+import { Header } from './components/ui/Header';
+import { Footer } from './components/ui/Footer';
+import { Main } from './components/ui/Main';
+import './App.scss';
 
 function App() {
-  const lll = 'gnj';
-  console.log(lll);
-  return <div></div>;
+  return (
+    <>
+      <Header></Header>
+      <Main>
+        <Outlet />
+      </Main>
+      <Footer></Footer>
+    </>
+  );
 }
 
 export default App;

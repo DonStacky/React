@@ -1,0 +1,30 @@
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 6rem;
+  background-color: $primaryColor;
+  box-shadow: $shadow;
+  gap: 3rem;
+  font-family: Inter, sans-serif;
+  font-weight: 700;
+
+  & a {
+    color: $secondaryColor;
+    cursor: pointer;
+    transition: 0.3s;
+    text-decoration: none;
+    padding: 1rem;
+
+    &:hover,
+    active {
+      color: #000000;
+    }
+  }
+}
+
+.active {
+  color: #000000;
+  text-decoration: underline;
+}

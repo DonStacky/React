@@ -1,0 +1,53 @@
+html {
+  font-family: Inter, sans-serif;
+  font-weight: 400;
+  box-sizing: border-box;
+  font-size: 8px;
+  overflow-x: hidden;
+  margin-right: calc(-1 * (100vw - 100%));
+
+  @media (min-width: 400px) {
+    font-size: 10px;
+  }
+
+  @media (min-width: 800px) {
+    font-size: 11px;
+  }
+
+  @media (min-width: 1200px) {
+    font-size: 12px;
+  }
+
+  @media (min-width: 1300px) {
+    font-size: 13px;
+  }
+
+  @media (min-width: 1400px) {
+    font-size: 14px;
+  }
+
+  @media (min-width: 1400px) {
+    font-size: 15px;
+  }
+}
+
+button,
+input {
+  font-family: Inter, sans-serif;
+  font-weight: 300;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  min-height: 100%;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 800px;
+
+  @media (min-width: 1200px) {
+    max-width: 1100px;
+  }
+}
