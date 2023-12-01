@@ -6,15 +6,13 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from 'react-router-dom';
-// import { DetailedCard } from './components/ui/detailed-card/detailed-card';
-// import { ResultField } from './components/ui/result-field/result-field';
-// import { ErrorPage } from './pages/error-page/error-page';
-// import { detailsLoader } from './components/ui/detailed-card/detailed-card';
 
 import App from './App';
 import { MainPage } from './pages/main-page';
 import { ReactHookForm } from './pages/react-hook-form';
 import { UncontrolledForm } from './pages/uncontrolled-form';
+import { Provider } from 'react-redux';
+import store from './store/store';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,6 +26,8 @@ const router = createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store()}>
+      <RouterProvider router={router} />
+    </Provider>
   </StrictMode>
 );
