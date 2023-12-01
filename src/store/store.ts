@@ -4,9 +4,11 @@ import {
   PreloadedState,
 } from '@reduxjs/toolkit';
 import countrySliceReducer from '../components/model/country/country-slice';
+import formDataReducer from '../components/ui/custom-form/custom-form-slice';
 
 export const rootReducer = combineReducers({
   country: countrySliceReducer,
+  formData: formDataReducer,
 });
 
 export default function setupStore(preloadedState?: PreloadedState<RootState>) {

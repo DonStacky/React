@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import { Header } from './components/ui/Header';
 import { Footer } from './components/ui/Footer';
-import { Main } from './components/ui/Main';
+import { Main } from './pages/main';
 import './App.scss';
 
 function App() {

@@ -21,8 +21,11 @@ export interface DataObject {
   gender?: string;
   country?: string;
   tc?: boolean;
-  image?: {
-    name?: string;
-    size?: number;
-  };
+  image?:
+    | {
+        name?: string;
+        size?: number;
+      }
+    | string;
+  form: string;
 }

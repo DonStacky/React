@@ -6,6 +6,7 @@ import { ErrorsObject, DataObject } from '../../../shared/types';
 import { useAppSelector, useAppDispatch } from '../../../store/hook';
 import { useRef } from 'react';
 import { pushFormData } from './custom-form-slice';
+import { readFile } from '../../model/read-file';
 
 export function CustomForm() {
   const [errors, setErrors] = useState<ErrorsObject>({ name: [] });
@@ -38,15 +39,17 @@ export function CustomForm() {
       password: password.current?.value,
       rpassword: rpassword.current?.value,
       tc: tc.current?.checked,
+      form: 'Uncontrolled form',
     };
 
     await customFormSchema
       .validate(customFormData, { abortEarly: false })
-      .then(() => {
+      .then(async () => {
         setErrors(() => ({}));
         if (handleChange()) {
-          dispatch(pushFormData(customFormData));
-          console.log(customFormData);
+          const imageFile = await readFile(image.current?.files?.[0] as File);
+          dispatch(pushFormData({ ...customFormData, image: imageFile }));
+          console.log(imageFile);
         }
       })
       .catch((e) => {
@@ -57,7 +60,7 @@ export function CustomForm() {
 
   const handleChange = () => {
     if (password.current?.value !== rpassword.current?.value) {
-      setErrors({ rpassword: ['Password mismatch'], ...errors });
+      setErrors({ ...errors, rpassword: ['Password mismatch'] });
       return false;
     } else {
       setErrors({});

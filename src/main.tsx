@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 
 import App from './App';
-import { MainPage } from './pages/main-page';
+import { MainPage } from './components/ui/Main/main-page';
 import { ReactHookForm } from './pages/react-hook-form';
 import { UncontrolledForm } from './pages/uncontrolled-form';
 import { Provider } from 'react-redux';
