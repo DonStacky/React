@@ -1,22 +1,23 @@
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 import {
-  Route,
-  RouterProvider,
   createBrowserRouter,
   createRoutesFromElements,
+  Route,
+  RouterProvider,
 } from 'react-router-dom';
 
+import { Provider } from 'react-redux';
 import App from './App';
-import { MainPage } from './components/ui/Main/main-page';
+import { MainPage } from './components/ui/main';
+import { ErrorPage } from './pages/error-page';
 import { ReactHookForm } from './pages/react-hook-form';
 import { UncontrolledForm } from './pages/uncontrolled-form';
-import { Provider } from 'react-redux';
 import store from './store/store';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<App />} /* errorElement={<ErrorPage />} */>
+    <Route path="/" element={<App />} errorElement={<ErrorPage />}>
       <Route index element={<MainPage />}></Route>
       <Route path="/uncontrolled-form" element={<UncontrolledForm />} />
       <Route path="/react-hook-form" element={<ReactHookForm />}></Route>

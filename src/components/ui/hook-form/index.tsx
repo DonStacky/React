@@ -1,7 +1,6 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { hookFormSchema } from '../../../validations/hook-form-validation';
-import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../store/hook';
 import { ImageFile } from '../../../shared/types';
 import { readFile } from '../../model/read-file';
@@ -50,10 +49,6 @@ export function HookForm() {
       clearErrors('rpassword');
     }
   };
-
-  useEffect(() => {
-    console.log(errors);
-  }, [errors]);
 
   return (
     <form className="custom-form" onSubmit={handleSubmit(onSubmit)}>

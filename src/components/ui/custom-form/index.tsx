@@ -49,7 +49,6 @@ export function CustomForm() {
         if (handleChange()) {
           const imageFile = await readFile(image.current?.files?.[0] as File);
           dispatch(pushFormData({ ...customFormData, image: imageFile }));
-          console.log(imageFile);
         }
       })
       .catch((e) => {

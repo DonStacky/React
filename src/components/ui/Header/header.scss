@@ -15,7 +15,7 @@ header {
     cursor: pointer;
     transition: 0.3s;
     text-decoration: none;
-    padding: 1rem;
+    padding: 0.5rem 1rem;
 
     &:hover,
     active {
@@ -25,6 +25,8 @@ header {
 }
 
 .active {
+  background-color: rgb(245, 245, 245);
+  box-shadow: $shadow;
+  border-radius: 8px;
   color: #000000;
-  text-decoration: underline;
 }
