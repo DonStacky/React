@@ -1,15 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { DataObject } from '../../../shared/types';
+import { DataObject } from '../../shared/types';
 
-interface customFormState {
+interface formState {
   value: DataObject[];
 }
 
-const initialValue: customFormState = {
+const initialValue: formState = {
   value: [],
 };
 
-const customFormSlice = createSlice({
+const formSlice = createSlice({
   name: 'customForm',
   initialState: initialValue,
   reducers: {
@@ -19,5 +19,5 @@ const customFormSlice = createSlice({
   },
 });
 
-export default customFormSlice.reducer;
-export const { pushFormData } = customFormSlice.actions;
+export default formSlice.reducer;
+export const { pushFormData } = formSlice.actions;

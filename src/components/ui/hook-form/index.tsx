@@ -1,11 +1,19 @@
-import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { hookFormSchema } from '../../../validations/hook-form-validation';
-import { useAppDispatch, useAppSelector } from '../../../store/hook';
-import { ImageFile } from '../../../shared/types';
-import { readFile } from '../../model/read-file';
-import { pushFormData } from '../custom-form/custom-form-slice';
+import clsx from 'clsx';
+import { useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { ImageFile } from '../../../shared/types';
+import { useAppDispatch, useAppSelector } from '../../../store/hook';
+import { hookFormSchema } from '../../../validations/hook-form-validation';
+import { pushFormData } from '../../model/form-slice';
+import { readFile } from '../../model/read-file';
+import '../custom-form/custom-form.scss';
+
+const big = /[A-ZА-Я]/;
+const small = /[a-zа-я]/;
+const num = /[0-9]/;
+const spec = /[\W_]/;
 
 interface IFormInput {
   name: string;
@@ -23,6 +31,7 @@ export function HookForm() {
   const countries = useAppSelector((state) => state.country.value);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const [protect, setProtect] = useState<number>(0);
 
   const {
     register,
@@ -50,6 +59,24 @@ export function HookForm() {
       setError('rpassword', { type: 'custom', message: 'Password mismatch' });
     } else {
       clearErrors('rpassword');
+    }
+  };
+
+  const checkStrength = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const password = event.target.value;
+
+    setProtect(0);
+    if (big.test(password)) {
+      setProtect((protect) => protect + 1);
+    }
+    if (small.test(password)) {
+      setProtect((protect) => protect + 1);
+    }
+    if (num.test(password)) {
+      setProtect((protect) => protect + 1);
+    }
+    if (spec.test(password)) {
+      setProtect((protect) => protect + 1);
     }
   };
 
@@ -112,7 +139,11 @@ export function HookForm() {
         <label htmlFor="password" className="custom-form__label">
           Password
         </label>
-        <input {...register('password')} type="password" />
+        <input
+          {...register('password')}
+          type="password"
+          onChange={checkStrength}
+        />
         <span className="custom-form__error">{errors.password?.message}</span>
       </div>
       <div>
@@ -125,6 +156,23 @@ export function HookForm() {
           onChange={handleChange}
         />
         <span className="custom-form__error">{errors.rpassword?.message}</span>
+        <div
+          className={clsx(
+            'password__meter',
+            protect <= 2
+              ? 'password__meter--weak'
+              : protect <= 3
+                ? 'password__meter--medium'
+                : 'password__meter--strong'
+          )}
+        ></div>
+        <span className="password__strength">
+          {protect <= 2
+            ? 'Weak password'
+            : protect <= 3
+              ? 'Medium password'
+              : 'Strong password'}
+        </span>
       </div>
       <div>
         <label htmlFor="tc" className="custom-form__t-and-c">

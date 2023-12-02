@@ -29,3 +29,29 @@
     margin-left: 4rem;
   }
 }
+
+.password__meter {
+  width: 60%;
+  margin: 0.5rem 0 0.2rem 2rem;
+  height: 0.5rem;
+  border-radius: 2px;
+  box-shadow: $shadow;
+  background-color: $primaryColor;
+
+  &--weak {
+    background-color: #a82222;
+  }
+
+  &--medium {
+    background-color: #a6a822;
+  }
+
+  &--strong {
+    background-color: #22a829;
+  }
+}
+
+.password__strength {
+  font-size: 0.8rem;
+  margin-left: 4.5rem;
+}

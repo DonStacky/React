@@ -1,10 +1,10 @@
 import {
-  configureStore,
   combineReducers,
+  configureStore,
   PreloadedState,
 } from '@reduxjs/toolkit';
 import countrySliceReducer from '../components/model/country/country-slice';
-import formDataReducer from '../components/ui/custom-form/custom-form-slice';
+import formDataReducer from '../components/model/form-slice';
 
 export const rootReducer = combineReducers({
   country: countrySliceReducer,

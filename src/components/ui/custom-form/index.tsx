@@ -1,16 +1,22 @@
-import './custom-form.scss';
+import clsx from 'clsx';
+import { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { DataObject, ErrorsObject } from '../../../shared/types';
+import { useAppDispatch, useAppSelector } from '../../../store/hook';
 import { customFormSchema } from '../../../validations/custom-form-validation';
 import { errorParser } from '../../model/errors-parser';
-import { useState } from 'react';
-import { ErrorsObject, DataObject } from '../../../shared/types';
-import { useAppSelector, useAppDispatch } from '../../../store/hook';
-import { useRef } from 'react';
-import { pushFormData } from './custom-form-slice';
+import { pushFormData } from '../../model/form-slice';
 import { readFile } from '../../model/read-file';
-import { useNavigate } from 'react-router-dom';
+import './custom-form.scss';
+
+const big = /[A-ZА-Я]/;
+const small = /[a-zа-я]/;
+const num = /[0-9]/;
+const spec = /[\W_]/;
 
 export function CustomForm() {
   const [errors, setErrors] = useState<ErrorsObject>({ name: [] });
+  const [protect, setProtect] = useState<number>(0);
   const countries = useAppSelector((state) => state.country.value);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -51,7 +57,6 @@ export function CustomForm() {
         if (handleChange()) {
           const imageFile = await readFile(image.current?.files?.[0] as File);
           dispatch(pushFormData({ ...customFormData, image: imageFile }));
-          console.log('submit');
           navigate('/');
         }
       })
@@ -68,6 +73,22 @@ export function CustomForm() {
     } else {
       setErrors({});
       return true;
+    }
+  };
+
+  const checkStrength = (password: string) => {
+    setProtect(0);
+    if (big.test(password)) {
+      setProtect((protect) => protect + 1);
+    }
+    if (small.test(password)) {
+      setProtect((protect) => protect + 1);
+    }
+    if (num.test(password)) {
+      setProtect((protect) => protect + 1);
+    }
+    if (spec.test(password)) {
+      setProtect((protect) => protect + 1);
     }
   };
 
@@ -142,7 +163,12 @@ export function CustomForm() {
         <label htmlFor="password" className="custom-form__label">
           Password
         </label>
-        <input type="password" id="password" ref={password} />
+        <input
+          type="password"
+          id="password"
+          ref={password}
+          onChange={() => checkStrength(password.current?.value || '')}
+        />
         <span className="custom-form__error">
           {errors.password && errors.password.at(-1)}
         </span>
@@ -159,6 +185,23 @@ export function CustomForm() {
         />
         <span className="custom-form__error">
           {errors.rpassword && errors.rpassword.at(-1)}
+        </span>
+        <div
+          className={clsx(
+            'password__meter',
+            protect <= 2
+              ? 'password__meter--weak'
+              : protect <= 3
+                ? 'password__meter--medium'
+                : 'password__meter--strong'
+          )}
+        ></div>
+        <span className="password__strength">
+          {protect <= 2
+            ? 'Weak password'
+            : protect <= 3
+              ? 'Medium password'
+              : 'Strong password'}
         </span>
       </div>
       <div>
