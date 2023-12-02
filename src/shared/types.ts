@@ -29,3 +29,9 @@ export interface DataObject {
     | string;
   form: string;
 }
+
+export type ImageFile = {
+  length: number;
+  size: number;
+  name: string;
+}[];
