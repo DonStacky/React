@@ -7,11 +7,13 @@ import { useAppSelector, useAppDispatch } from '../../../store/hook';
 import { useRef } from 'react';
 import { pushFormData } from './custom-form-slice';
 import { readFile } from '../../model/read-file';
+import { useNavigate } from 'react-router-dom';
 
 export function CustomForm() {
   const [errors, setErrors] = useState<ErrorsObject>({ name: [] });
   const countries = useAppSelector((state) => state.country.value);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const name = useRef<HTMLInputElement>(null);
   const age = useRef<HTMLInputElement>(null);
@@ -49,6 +51,8 @@ export function CustomForm() {
         if (handleChange()) {
           const imageFile = await readFile(image.current?.files?.[0] as File);
           dispatch(pushFormData({ ...customFormData, image: imageFile }));
+          console.log('submit');
+          navigate('/');
         }
       })
       .catch((e) => {

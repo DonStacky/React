@@ -1,12 +1,13 @@
+import clsx from 'clsx';
 import { useAppSelector } from '../../../store/hook';
 import './main-page.scss';
-import clsx from 'clsx';
 
 export const MainPage = () => {
   const formData = useAppSelector((state) => state.formData.value);
+  console.log(formData);
 
   if (formData.length === 0) {
-    return <h3 className="main-page">There&apos;s nothing here...</h3>;
+    return <h3 className="main-page">There&apos;s nothing here yet...</h3>;
   } else {
     return (
       <div className="main-page">

@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../../store/hook';
 import { ImageFile } from '../../../shared/types';
 import { readFile } from '../../model/read-file';
 import { pushFormData } from '../custom-form/custom-form-slice';
+import { useNavigate } from 'react-router-dom';
 
 interface IFormInput {
   name: string;
@@ -21,6 +22,7 @@ interface IFormInput {
 export function HookForm() {
   const countries = useAppSelector((state) => state.country.value);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -39,6 +41,7 @@ export function HookForm() {
       const imageFile = await readFile(data.image[0] as unknown as File);
       const submitData = { ...data, image: imageFile, form: 'React Hook Form' };
       dispatch(pushFormData(submitData));
+      navigate('/');
     }
   };
 

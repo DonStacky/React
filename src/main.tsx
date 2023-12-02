@@ -1,13 +1,12 @@
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
 import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
   RouterProvider,
 } from 'react-router-dom';
-
-import { Provider } from 'react-redux';
 import App from './App';
 import { MainPage } from './components/ui/main';
 import { ErrorPage } from './pages/error-page';
