@@ -23,7 +23,13 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['react-refresh', '@typescript-eslint', 'react', 'react-hooks'],
+  plugins: [
+    'react-refresh',
+    '@typescript-eslint',
+    'react',
+    'react-hooks',
+    'prettier',
+  ],
   rules: {
     'react-refresh/only-export-components': [
       'warn',

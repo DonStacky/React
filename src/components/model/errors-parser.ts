@@ -1,8 +1,8 @@
 import { ErrorsObject } from '../../shared/types';
 import { ValidationError } from 'yup';
 
-export function errorParser(errorsArray: ValidationError[]) {
-  const errors = errorsArray.reduce((result, error) => {
+export function getErrorMessages(errorsArray: ValidationError[]) {
+  const errors = errorsArray.reduce((result: ErrorsObject, error) => {
     let errorKey = error.path as keyof ErrorsObject;
     if (errorKey === 'age') {
       if (error.params?.originalValue === '') {
@@ -16,10 +16,13 @@ export function errorParser(errorsArray: ValidationError[]) {
       errorKey = 'image';
     }
 
-    if (!result[errorKey]) result[errorKey] = [];
-    (result[errorKey] as string[]).push(error.message);
+    if (!result[errorKey]) {
+      result[errorKey] = [];
+    }
+
+    result?.[errorKey]?.push(error.message);
     return result;
-  }, {} as ErrorsObject);
+  }, {});
 
   return errors;
 }

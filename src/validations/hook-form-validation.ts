@@ -63,7 +63,7 @@ export const hookFormSchema = yup.object().shape({
       /[\W_]/,
       'Password must contain at least one special character (e.g., !@#$%^&*-)'
     ),
-  rpassword: yup
+  secondPassword: yup
     .string()
     .required('The password is a required field')
     .min(4, 'Password must be at least 4 characters')

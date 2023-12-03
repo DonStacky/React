@@ -3,7 +3,7 @@ export interface ErrorsObject {
   age?: string[];
   email?: string[];
   password?: string[];
-  rpassword?: string[];
+  secondPassword?: string[];
   gender?: string[];
   'image.name'?: string[];
   'image.size'?: string[];
@@ -17,7 +17,7 @@ export interface DataObject {
   age?: string;
   email?: string;
   password?: string;
-  rpassword?: string;
+  secondPassword?: string;
   gender?: string;
   country?: string;
   tc?: boolean;

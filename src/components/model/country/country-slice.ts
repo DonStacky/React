@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { countries } from './countries';
 
-interface countryState {
+interface CountryState {
   value: string[];
 }
 
-const initialValue: countryState = {
+const initialValue: CountryState = {
   value: countries,
 };
 

@@ -60,7 +60,7 @@ export const customFormSchema = yup.object().shape({
     )
     .min(4)
     .required('The password is a required field'),
-  rpassword: yup
+  secondPassword: yup
     .string()
     .matches(/[0-9]/, 'Password must contain at least 1 digit')
     .matches(/[a-zа-я]/, 'Password must contain at least 1 lowercased letter')

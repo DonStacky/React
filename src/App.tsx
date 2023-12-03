@@ -6,7 +6,7 @@ import { Main } from './pages/main';
 function App() {
   return (
     <>
-      <Header></Header>
+      <Header />
       <Main>
         <Outlet />
       </Main>

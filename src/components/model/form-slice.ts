@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { DataObject } from '../../shared/types';
 
-interface formState {
+interface FormState {
   value: DataObject[];
 }
 
-const initialValue: formState = {
+const initialValue: FormState = {
   value: [],
 };
 
