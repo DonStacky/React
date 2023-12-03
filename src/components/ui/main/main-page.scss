@@ -1,0 +1,44 @@
+.main-page {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 1rem;
+  align-items: center;
+  padding: 2rem 0;
+}
+
+.tile {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: $primaryColor;
+  box-shadow: $shadow;
+
+  &--new {
+    border: 5px solid rgb(92, 165, 103);
+  }
+
+  &__text {
+    display: flex;
+    width: 15rem;
+    flex-direction: column;
+  }
+
+  & h3 {
+    margin: 0.5rem 0;
+  }
+
+  & span {
+    margin: 0.2rem;
+  }
+
+  &__img {
+    width: 7rem;
+
+    & img {
+      width: 100%;
+    }
+  }
+}

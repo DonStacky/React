@@ -1,0 +1,57 @@
+.custom-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 19rem;
+  margin: 3rem auto;
+
+  &__label {
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  &__error {
+    display: block;
+    height: 1rem;
+    margin-top: 0.2rem;
+    font-size: 0.8rem;
+    color: #a82222;
+  }
+
+  &__t-and-c {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__button {
+    width: 6rem;
+    margin-left: 4rem;
+  }
+}
+
+.password__meter {
+  width: 60%;
+  margin: 1.2rem 0 0.2rem 2rem;
+  height: 0.5rem;
+  border-radius: 2px;
+  box-shadow: $shadow;
+  background-color: $primaryColor;
+
+  &--weak {
+    background-color: #a82222;
+  }
+
+  &--medium {
+    background-color: #a6a822;
+  }
+
+  &--strong {
+    background-color: #22a829;
+  }
+}
+
+.password__strength {
+  font-size: 0.8rem;
+  margin-left: 4.5rem;
+}
